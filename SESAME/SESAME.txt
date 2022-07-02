@@ -1,0 +1,35 @@
+https://dev-02.vizix.cloud
+SESAMEroot
+Control123!
+
+
+----MainDC -> DC-6901 -> Commissioning---- 
+
+{"tid": "urn:ecw:tag:tid:E200B082077BCEB5","cxid": "" },
+{"tid": "urn:ecw:tag:tid:E200B082078BCEB6","cxid": "" },
+{"tid": "urn:ecw:tag:tid:E200B082079BCEB7","cxid": "" },
+{"tid": "urn:ecw:tag:tid:E200B082080BCEB8","cxid": "" }
+
+{"tid": "urn:ecw:tag:tid:E200B082077BCED4","cxid": "" },
+{"tid": "urn:ecw:tag:tid:E200B082078BCED5","cxid": "" },
+{"tid": "urn:ecw:tag:tid:E200B082079BCED6","cxid": "" },
+{"tid": "urn:ecw:tag:tid:E200B082080BCED7","cxid": "" }
+
+-----DC -> DC-130 -> Comissioning-----
+
+{"tid": "urn:ecw:tag:tid:E200B082077BCEC5","cxid": "" },
+{"tid": "urn:ecw:tag:tid:E200B082078BCEC6","cxid": "" },
+{"tid": "urn:ecw:tag:tid:E200B082079BCEC7","cxid": "" },
+{"tid": "urn:ecw:tag:tid:E200B082080BCEC8","cxid": "" }
+
+-----Factory -> FACTORY-6902 -> Commissioning -----
+
+{"tid": "urn:ecw:tag:tid:E200B082077BCEC9","cxid": "" },
+{"tid": "urn:ecw:tag:tid:E200B082078BCED1","cxid": "" },
+{"tid": "urn:ecw:tag:tid:E200B082079BCED2","cxid": "" },
+{"tid": "urn:ecw:tag:tid:E200B082080BCED3","cxid": "" }
+
+----------- Shipping ---------
+urn:econnectware:site:loc:DC-TagsysTag
+
+https://mojixinc.atlassian.net/browse/RPLAT-3840

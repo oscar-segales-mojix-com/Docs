@@ -1,0 +1,26 @@
+company prexi - no necesita la serialization
+4.10.0
+Print
+5.3.X la ultima (si hay tiempo)
+
+
+
+
+00020238000009 single no company_prefix
+00020238000009 single no company_prefix
+
+
+00020238100051 MATE no company_prefix 
+00020238300062 MATE no company_prefix bundle>2
+
+00002948800032 exits in plat not in company_prefix not in json
+
+00084361200248 in list but unknown prod
+
+00002948800032 exits in plat not in company_prefix nor in json
+
+03979787777207 not in the list not in the company_prefix
+
+PR-755 services y sysconfig
+
+69722568

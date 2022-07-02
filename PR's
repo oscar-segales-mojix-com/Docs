@@ -1,0 +1,54 @@
+PR-216
+    
+
+
+PR-238
+    MR -> support of prefix/suffix in barcode (MR 2.5.0)
+    S&P -> support of prefix/suffix in barcode (S&P 2.1.0)
+
+    https://docs.google.com/presentation/d/16w7gz5MW15ABqWuls4Hu21kKAdxaD0ybPGVDI96rK7M/edit
+
+PR-239 
+    PE SOH auto-generation - management & alerting below a define threshold
+    Analytics to 1.0.3
+    Will not affect any other customer (AMRG, PERN)
+    Need to check configurations
+    Important: Do not touch bond
+
+https://docs.google.com/document/d/1nu4HaxyebQSsYteIbvd-4A16nTYmhocsUZks3kDVwo0/edit
+
+PR-293 
+    Mobile-> support product overs. (Supply Chain - Old Inventory)
+        RECEIVING-> Overs/Extras will be displayed next to product counts 2/2
+        RECEIVING-> 2/2 - with check icon
+        RECEIVING-> 1/2 - no with check icon
+        RECEIVING-> 2/2 2 - no check icon
+    Mobile -> support SKU level expected. (Supply Chain - Old Inventory)
+        Will display SKU number 
+        INFO- Will display the list of gtins
+    Mobile -> support GTIN level expected. (Supply Chain - Old Inventory)
+        Will display the first GTIN number 
+        PRODUCT INFO - Will display the list of gtins
+    MIGRATION - S&P into ytem
+        SETTINGS -> New field - Associate Name - Max list Items (positve numbers) - Filter Lost Articles 
+        PICK -> Will get all the info after clicking on the Pick List (no internet nedded after that)
+        Status:
+            Open.-> Pick lists which have been recently added 
+            Stand_by.-> Pick lists which are not completed and are saved to continue later. 
+            In progress.-> Pick lists who are accessed by a different that the owner of the list
+            Done.-> Picklist finished. 
+            
+    https://docs.google.com/presentation/d/1Vh-kE07u4Sgc2gchwb2VV-kWFRRhkew9FxC8jNuljbU/edit#slide=id.p
+
+PR-190
+    EVENT CREATOR
+
+    https://mojixinc.atlassian.net/wiki/spaces/VIZIX/pages/869958054/ViZix+Event+Creation
+
+PR-383
+
+
+PR-398 Conveyor Oscar
+
+PR-270 Fitting Room Oscar
+    

@@ -1,0 +1,212 @@
+verification_service -> see what is sent
+
+bash install-qa.sh -t BONDQA5 -e DEV-03 -h DEV-03-HUB01
+
+
+
+wget https://chanel:chanel@partners.vizix.io/file/install-qa.sh
+bash install-qa.sh -e DEV-03 -h DEV-03-HUB01
+
+Mysql Products
+--------------------
+host: ${YOUR_HUB_IP}
+port: 3307
+db: businessProducts
+user: root
+pass: root
+
+
+Mysql Reflists
+--------------------
+host: ${YOUR_HUB_IP}
+port: 3306
+db: supplyChain
+user: root
+pass: root
+
+docker-compose -f verification-service.yaml down
+docker-compose -f verification-service.yaml pull
+docker-compose -f verification-service.yaml up -d
+docker-compose -f proxy.yaml restart
+
+alias remove="docker service rm"
+alias deploy="docker stack deploy ytem --with-registry-auth -c"
+alias list="docker service ls"
+alias status="docker service ps"
+alias logs="docker logs -f --tail 100"
+
+
+E.g:
+- "list" -> listas todos los servicios deployados
+- "logs ytem_cxi-hub" -> revisar logs del cxi-hub
+
+deploy /opt/ytem_edge/sick-simulator.yaml
+logs ytem_sick-simulator
+
+docker ps | grep kedge
+
+3034DFC07C417E75FAF16025
+bin/kafka-consumer-groups.sh --bootstrap-server kedge:9092 --describe --group edge-kafka-connector-1
+DELETE
+docker exec -ti 38423e8bee81 bash -c './kafka-topics.sh --zookeeper zookeeper:2181 --topic ___iot___config___devices --delete'
+
+logs ytem_proxy
+
+
+remove ytem_sick-simulator
+deploy /opt/ytem_edge/sick-simulator.yaml
+
+remove ytem_proxy
+deploy /opt/ytem_edge/proxy.yaml
+
+
+Heartbeat, no van a verificationservice
+    ytem_monitoring-api
+    ytem_configuration-api
+
+LIST::
+./kafka-consumer-groups.sh --bootstrap-server localhost:9092 --list
+
+Heartbeat workaround:
+remove ytem_sick-connector
+remove ytem_configuration-api
+Enter to kedge 
+./kafka-topics.sh --zookeeper zookeeper:2181 --topic ___iot___configs___devices --delete
+and start them
+deploy sick-connector.yaml
+deploy configuration-api.yaml
+--------------------------------------------------------
+Smoke test
+PTR
+PR
+--------------------------------------------------------
+alias remove="docker service rm"
+alias deploy="docker stack deploy ytem --with-registry-auth -c"
+alias list="docker service ls"
+alias status="docker service ps"
+alias logs="docker logs -f --tail 100"
+
+
+Serial Number [RULE8], Could not process CurrentMongoKafka. key=/RED/RULE|RULE8 message=Error writing thing '/RED/RULE|RULE8@35fd583d' into Mongo. message=E11000 duplicate key error collection: viz_red.d7bbbe7db62b592e701634fa410e8ada_things index: _id_ dup key: { _id: "2.52.6470486073900066" }
+
+
+docker exec -ti be186b96d85e bash -c './bin/kafka-console-consumer.sh --bootstrap-server kedge:9092 --topic SHOW___iot___monitoring___hb --from-beginning --property print.key=true --property print.timestamp=true'
+docker exec -ti be186b96d85e bash -c './bin/kafka-console-consumer.sh --bootstrap-server kedge:9092 --topic SHOW___cache___referencelist___packing --from-beginning --property print.key=true --property print.timestamp=true'
+docker exec -ti be186b96d85e bash -c './bin/kafka-console-consumer.sh --bootstrap-server kedge:9092 --topic RED___iot___monitoring___hb --from-beginning --property print.key=true --property print.timestamp=true'
+docker exec -ti be186b96d85e bash -c './bin/kafka-console-consumer.sh --bootstrap-server kedge:9092 --topic ___v1___ss___epcisMap --from-beginning --property print.key=true --property print.timestamp=true'
+
+
+CONSUL
+http://192.168.0.161:80/ui/kv/
+
+mojix / H7waLQn8ZKUX4uz3Wv3B
+
+Dale terminando en /ui/kv para que sepa ir a consul.
+
+tomcat / QoLUbpdpHmREvkC3Pntb
+
+
+MAPEO
+docker ps | grep verification-service
+docker exec -it 077753810f59 /bin/sh
+curl -svk -X GET http://localhost:8080/verification-service/rest/fixtureMapping/check\?fixtureId\=9999999.88888.555
+
+
+
+"global.company.prefix.list": "357260-357261-357262-357263-357264-357265-357266-357267-357268-357269-357270-8053672-8056597-8056598",
+
+
+docker exec -ti 27247585e259 bash -c 'bin/kafka-consumer-groups.sh --bootstrap-server kedge:9092 --describe --group ytem-edge-connector-df86ff2d-a030-421c-9980-36b0b3c5aff1'
+
+
+ISSUE
+configuration-api
+sick-connector
+
+prometheus-red-at
+
+Actualizar components
+docker image pull gcr.io/mojix-registry/ytem-connector-sick-simulator:main
+docker image pull gcr.io/mojix-registry/ye-verification-service:main
+
+MONITORING
+
+Bajar ela memoria del verificationservice
+
+-.-.--.-.-.-.-.-.-.Verify that a Primary Hub -.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-
+
+Verify that a Primary Hub has in edge-monitoring.yaml EDGE_MONITORING_PRIMARY_EDGE=True 
+and EDGE_MONITORING_PREMISE_CODE=QAMOJIX
+
+--.-.-.-.-.--.-.-.--.Problemas con el IP del hub?-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-
+
+nano /etc/hosts
+insert---:  192.268.0.30 api.red-at.vizix.io
+
+----------------------------------------------------------------
+
+"global.company.prefix.list": "357260-357261-357262-357263-357264-357265-357266-357267-357268-357269-357270-8053672-8056597-8056598",
+
+
+
+docker-compose -f /opt/ytem_edge/mojix-kafka-downstream-replicator.yaml logs -f --tail 100
+
+303960F382704E0000001912
+
+303965D602AB98C0000020BA
+C03965D602AB98C0000020BA
+303965D602AB98C0000020BB
+C03965D602AB98C0000020BB
+303965D602AB98C0000011F9
+C03965D602AB98C0000011F9
+303965D602AB98C0000011FA
+C03965D602AB98C0000011FA
+303965D602AB98C0000011FB
+C03965D602AB98C0000011FB
+
+03572612059785
+30395CE340C92680000011F9
+C0395CE340C92680000011F9
+
+03572600059780
+30395CE30005D680000025B1
+C0395CE30005D680000025B1
+{
+"epc": "urn:epc:id:sgtin:357260.0005978.9649",
+"gtin": "03572600059780",
+"hexa": "30395CE30005D680000025B1"
+},
+{
+"epc": "urn:ecw:id:sgtin:mate:c0:357260.0005978.9649",
+"gtin": "03572600059780",
+"hexa": "C0395CE30005D680000025B1"
+}
+
+"303960F3827074C0000017BA;303960F3827074C0000017BB;303960F3827074C0000017BC"
+{
+"epc": "urn:epc:id:sgtin:357265.0480791.6602",
+"gtin": "03572654807917",
+"hexa": "30395CE441D585C0000019CA"
+}
+
+
+
+
+
+RED
+
+[PR-717] - [Replenishment Phase 2] Blocked status with configurable exits
+PTR - Review block status
+GDC2 - SSCC [PR-704] - SSCC Management
+CrossDock
+
+
+
+Done
+Print
+Xpoint
+[PR-716] - [Device Configuration] Remove POV UI Limitation (Globally) PASSED
+[PR-732] - [Single Product Configuration] Rules & Attributes (CRUD) PASSED
+Fitting room
+POE
+POS

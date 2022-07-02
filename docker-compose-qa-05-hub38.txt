@@ -1,0 +1,441 @@
+# Ansible managed
+
+version: '2.4'
+
+services:
+
+    cxi-hub-rabbitmq:
+        container_name: cxi-hub-rabbitmq
+        image: "docker-pull.factory.shopcx.io/hub/rabbitmq:4.0.5"
+        hostname: "hub38"
+        environment:
+          - tenant_code=RED3
+          - digital_plateform_host=qa-05.vizix.cloud
+          - digital_plateform_port=50574
+          - digital_plateform_protocol=http
+          - digital_plateform_notification=qa-05.vizix.cloud
+          - amqp_cloud_server_user=admin
+          - amqp_cloud_server_pass=dhUhLADa5c8AxEmu
+          - amqps_cloud_server_port=50571
+          - amqp_local_server_user=whiterabbit
+          - amqp_local_server_pass=rabbit
+        ports:
+            - "15672:15672"
+            - "5672:5672"
+        volumes:
+            - /data/hub/rabbitmq/storage:/var/lib/rabbitmq
+        extra_hosts:
+            - "qa-05.vizix.cloud:10.128.0.2"
+        networks:
+                default_hub:
+        restart: unless-stopped
+        logging:
+            driver: json-file
+            options:
+                max-size: "512m"
+                max-file: "5"
+
+
+    cxi-hub-heartbeat:
+        container_name: cxi-hub-heartbeat
+        hostname: "hub38"
+        image: "docker-pull.factory.shopcx.io/hub/heartbeat:4.0.5"
+        environment:
+          - tenant_code=RED3
+          - digital_plateform_host=k8s-centralus-engineering-02.vizix.cloud
+          - digital_plateform_port=50574
+          - digital_plateform_protocol=http
+          - digital_plateform_notification=qa-05.vizix.cloud
+          - digital_plateform_user=RED3root
+          - digital_plateform_pass=m0j1xInc!
+          - amqp_local_server_host=cxi-hub-rabbitmq
+          - amqp_local_server_management_port=15672
+          - amqp_local_server_user=whiterabbit
+          - amqp_local_server_pass=rabbit
+          - tomcat_admin_user=tomcat
+          - tomcat_admin_pass=tomcat
+          - es_http_port=9203
+          - hub_apl_server_host=cxi-hub
+          - hub_apl_server_port=8080
+          - hub_hal_server_host=cxi-hub
+          - hub_hal_server_port=8080
+          - hub_hal_administration_server_host=cxi-hub
+          - hub_hal_administration_server_port=8080
+          - hub_printing_server_host=cxi-hub
+          - hub_printing_server_port=8080
+        volumes:
+            - /data/hub/heartbeat/conf:/usr/share/heartbeat/conf:ro
+            #Allows us to report on docker from the hosts information.
+            - /var/run/docker.sock:/var/run/docker.sock
+        extra_hosts:
+            - "qa-05.vizix.cloud:10.128.0.2"
+        #command: heartbeat -e -d "publish" -strict.perms=false
+        command: heartbeat -e -strict.perms=false
+        networks:
+                default_hub:
+        restart: unless-stopped
+        logging:
+            driver: json-file
+            options:
+                max-size: "512m"
+                max-file: "5"
+
+
+    cxi-hub-metricbeat:
+        container_name: cxi-hub-metricbeat
+        hostname: "hub38"
+        image: "docker-pull.factory.shopcx.io/hub/metricbeat:4.0.5"
+        environment:
+          - tenant_code=RED3
+          - digital_plateform_host=k8s-centralus-engineering-02.vizix.cloud
+          - digital_plateform_port=50574
+          - digital_plateform_protocol=http
+          - digital_plateform_notification=qa-05.vizix.cloud
+          - digital_plateform_user=RED3root
+          - digital_plateform_pass=m0j1xInc!
+          - es_http_port=9203
+        volumes:
+            # The commented sections below enable Metricbeat to monitor the Docker host rather than the Metricbeat container. These are used by the system m$
+            - /proc:/hostfs/proc:ro
+            - /sys/fs/cgroup:/hostfs/sys/fs/cgroup:ro
+            #Allows us to report on docker from the hosts information
+            - /var/run/docker.sock:/var/run/docker.sock
+            #We mount the host filesystem so we can report on disk usage with the system module
+            - /:/hostfs:ro
+        #command: metricbeat -e -d "publish" -system.hostfs=/hostfs -strict.perms=false
+        command: metricbeat -e -system.hostfs=/hostfs -strict.perms=false
+        extra_hosts:
+            - "qa-05.vizix.cloud:10.128.0.2"
+        networks:
+                default_hub:
+        restart: unless-stopped
+        logging:
+            driver: json-file
+            options:
+                max-size: "512m"
+                max-file: "5"
+
+
+    cxi-hub-packetbeat:
+        container_name: cxi-hub-packetbeat
+        hostname: "hub38"
+        image: "docker-pull.factory.shopcx.io/hub/packetbeat:4.0.5"
+        environment:
+          - tenant_code=RED3
+          - digital_plateform_host=k8s-centralus-engineering-02.vizix.cloud
+          - digital_plateform_port=50574
+          - digital_plateform_protocol=http
+          - digital_plateform_notification=qa-05.vizix.cloud
+          - digital_plateform_user=RED3root
+          - digital_plateform_pass=m0j1xInc!
+          - es_http_port=9203
+        #command: packetbeat -e -d "publish" -strict.perms=false
+        command: packetbeat -e -strict.perms=false
+        extra_hosts:
+            - "qa-05.vizix.cloud:10.128.0.2"
+        # Packetbeat needs some elevated privileges to capture network traffic.
+        # We'll grant them with POSIX capabilities.
+        cap_add: ['NET_RAW', 'NET_ADMIN']
+        # Use "host mode" networking to allow Packetbeat to capture traffic from
+        # the real network interface on the host, rather than being isolated to the
+        # container's virtual interface.
+        network_mode: host
+        restart: unless-stopped
+        logging:
+            driver: json-file
+            options:
+                max-size: "512m"
+                max-file: "5"
+
+
+    cxi-hub-logstash:
+        container_name: cxi-hub-logstash
+        hostname: "hub38"
+        image: "docker-pull.factory.shopcx.io/hub/logstash:4.0.5"
+        environment:
+          - tenant_code=RED3
+          - digital_plateform_host=k8s-centralus-engineering-02.vizix.cloud
+          - digital_plateform_port=50574
+          - digital_plateform_protocol=http
+          - digital_plateform_notification=qa-05.vizix.cloud
+          - digital_plateform_user=RED3root
+          - digital_plateform_pass=m0j1xInc!
+          - es_http_port=9203
+          - logstash_use_ssl=false
+        volumes:
+            - /data/hub/tomcat/logs:/var/log/tomcat8:ro
+        extra_hosts:
+            - "qa-05.vizix.cloud:10.128.0.2"
+        networks:
+                default_hub:
+        restart: unless-stopped
+        logging:
+            driver: json-file
+            options:
+                max-size: "512m"
+                max-file: "5"
+
+
+    cxi-hub:
+        container_name: cxi-hub
+        hostname: "hub38"
+        image: "docker-pull.factory.shopcx.io/hub/hub:4.0.5"
+        environment:
+          - tenant_code=RED3
+          - digital_plateform_host=qa-05.vizix.cloud
+          - digital_plateform_port=50574
+          - digital_plateform_protocol=http
+          - digital_plateform_notification=qa-05.vizix.cloud
+          - digital_plateform_user=RED3root
+          - digital_plateform_pass=m0j1xInc!
+          - amqp_cloud_server_user=admin
+          - amqp_cloud_server_pass=dhUhLADa5c8AxEmu
+          - amqp_local_server_host=cxi-hub-rabbitmq
+          - amqp_local_server_user=whiterabbit
+          - amqp_local_server_pass=rabbit
+          - tomcat_admin_user=tomcat
+          - tomcat_admin_pass=tomcat
+          - hub_configuration_local_host=cxi-hub
+          - hub_configuration_local_port=8080
+          - hub_hal_rest_server_host=cxi-hub
+          - hub_hal_rest_server_port=8080
+          - hub_hal_rest_server_scheme=http
+          - apl_server_host=cxi-hub
+          - apl_server_port=8080
+          - apl_server_scheme=http
+          - hal_server_host=cxi-hub
+          - hal_server_port=8080
+          - hal_server_scheme=http
+          - api_supplychain_local_uri=http://hub-supply-chain-api:80/supply-chain-api
+          - api_product_local_uri=http://product-api-local:8080/product-api
+          - tagauth_protocol=http
+          - tagauth_host=qa-05.vizix.cloud
+          - tagauth_port=50574
+        ports:
+            - "8080:8080"
+            - "8000:8000"
+        volumes:
+            - /data/hub/tomcat/conf_replay:/usr/local/tomcat/tagsys_replay:ro
+            - /data/hub/tomcat/logs:/usr/local/tomcat/logs
+            - /data/hub/tomcat/www:/usr/local/tomcat/www
+            - /data/hub/tomcat/tagsys:/usr/local/tomcat/tagsys
+            - /data/hub/tomcat/hub_data:/usr/local/tomcat/hub_data
+            - /data/hub/heartbeat/conf:/usr/share/heartbeat/conf
+        extra_hosts:
+            - "qa-05.vizix.cloud:10.128.0.2"
+        depends_on:
+            - cxi-hub-rabbitmq
+        networks:
+                default_hub:
+        restart: unless-stopped
+        logging:
+            driver: json-file
+            options:
+                max-size: "512m"
+                max-file: "5"
+
+
+    supply-process:
+        container_name: supply-process
+        image: "docker-pull.factory.shopcx.io/supply-process:1.3.2.1"
+        environment:
+          - tenant_code=RED3
+          - logging.level.com.cxi=INFO
+          - logging.level.root=INFO
+          - server.servlet.contextPath=/supply-process/rest
+          - apl.api.host=cxi-hub
+          - apl.api.port=8080
+          - apl.api.war.name=apl-webservices
+          - apl.api.connect.timeout=1000
+          - apl.api.read.timeout=3000
+          - epcis.hub.host=cxi-hub
+          - epcis.hub.api.port=8080
+          - epcis.hub.api.war.name=apl-webservices
+          - epcis.hub.api.connect.timeout=1000
+          - epcis.hub.api.read.timeout=3000
+          - reader.gateway.api.host=reader-gateway
+          - reader.gateway.api.port=8081
+          - reader.gateway.api.war.name=readergateway
+          - reader.gateway.api.connect.timeout=1000
+          - reader.gateway.api.read.timeout=3000
+          - supply.chain.api.host=qa-05.vizix.cloud
+          - supply.chain.api.port=50574
+          - supply.chain.api.war.name=supply-chain-api
+          - supply.chain.api.connect.timeout=1000
+          - supply.chain.api.read.timeout=3000
+          - supply.chain.api.use.https=false
+          - supply.chain.api.user=RED3root
+          - supply.chain.api.password=m0j1xInc!
+          - JAVA_OPTS=-XX:+UnlockExperimentalVMOptions -XX:+UseCGroupMemoryLimitForHeap -XX:MaxRAMFraction=1  -XshowSettings:vm
+          - reader.read.time.offset=0
+        ports:
+            - 8082:80
+        volumes:
+            - /data/hub/tomcat/logs:/usr/local/supply-process/logs
+        extra_hosts:
+            - "qa-05.vizix.cloud:10.128.0.2"
+        depends_on:
+            - cxi-hub
+            - reader-gateway
+        networks:
+                default_hub:
+        restart: unless-stopped
+        logging:
+            driver: json-file
+            options:
+                max-size: "512m"
+                max-file: "5"
+
+
+    reader-gateway:
+        container_name: reader-gateway
+        image: "docker-pull.factory.shopcx.io/reader-gateway:1.1.5.3"
+        environment:
+          - logging.level.com.cxi=INFO
+          - logging.level.root=INFO
+          - logging.path=/usr/local/reader-gateway
+          - logging.file=reader-gateway.log
+          - hal.url=http://cxi-hub:8080/hal-webservices/
+          - server.port=8081
+          - JAVA_OPTS=-XX:+UnlockExperimentalVMOptions -XX:+UseCGroupMemoryLimitForHeap -XX:MaxRAMFraction=2  -XshowSettings:vm -Dio.netty.allocator.useCacheForAllThreads=false
+          - spring.boot.admin.client.instance.name=reader-gateway
+          - spring.boot.admin.client.url=http://spring-boot-admin-server:1111
+          - spring.data.mongodb.database=tagState
+          - spring.data.mongodb.host=mongodb
+          - spring.data.mongodb.port=27017
+          - reader.gateway.cache.document.size=10000
+        ports:
+            - 8081:8081
+        depends_on:
+            - cxi-hub
+            - mongodb
+        networks:
+                default_hub:
+        restart: unless-stopped
+        logging:
+            driver: json-file
+            options:
+                max-size: "512m"
+                max-file: "5"
+
+    mongodb:
+        image: mongo
+        ports:
+            - 27017:27017
+        networks:
+                default_hub:
+        environment:
+          - MONGO_INITDB_DATABASE=tagState
+        restart: unless-stopped
+
+
+    hub-documents-ingestion:
+        container_name: hub-documents-ingestion
+        image: "docker-pull.factory.shopcx.io/hub-documents-ingestion:4.0.0"
+        environment:
+          - hub.code=hub38
+          - tenant.code=RED3
+          - amqp.host=qa-05.vizix.cloud
+          - amqp.port=5672
+          - amqp.user=admin
+          - amqp.password=dhUhLADa5c8AxEmu
+          - amqp.qos.nb=10
+          - api.configuration.locations.uri=http://mojix_test:m0j1xInc!@qa-05.vizix.cloud:50574/statemachine-api-configuration
+          - api.configuration.devices.uri=http://mojix_test:m0j1xInc!@qa-05.vizix.cloud:50574/statemachine-api-configuration
+          - api.configuration.timeout.ms=10000
+          - api.configuration.reset.timeout.ms=30000
+          - api.supplychain.uri=http://hub-supply-chain-api:80/supply-chain-api
+          - api.supplychain.timeout.ms=10000
+          - api.supplychain.failure.max=5
+          - api.supplychain.reset.timeout.ms=30000
+          - api.supplychain.retry.max=0
+        ports:
+            - 8083:8080
+        extra_hosts:
+            - "qa-05.vizix.cloud:10.128.0.2"
+        depends_on:
+            - hub-supply-chain-api
+        networks:
+                default_hub:
+        restart: unless-stopped
+        logging:
+            driver: json-file
+            options:
+                max-size: "512m"
+                max-file: "5"
+
+    hub-supply-chain-api:
+        container_name: hub-supply-chain-api
+        image: "docker-pull.factory.shopcx.io/hub-supply-chain-api:1.0.0"
+        environment:
+          - logging.level.com.cxi=INFO
+          - logging.level.root=INFO
+          - server.servlet.contextPath=/supply-chain-api
+          - spring.datasource.name=supplyChainDataSource
+          - spring.datasource.url=jdbc:mysql://hub-supply-chain-api-db:3306/supplyChain?useUnicode=true&amp;characterEncoding=utf8&amp;autoReconnect=true
+          - spring.datasource.username=supplyChainAdmin
+          - spring.datasource.password=supplyChainAdmin
+          - JAVA_OPTS=-XX:+UnlockExperimentalVMOptions -XX:+UseCGroupMemoryLimitForHeap -XX:MaxRAMFraction=1  -XshowSettings:vm
+        ports:
+            - 8084:80
+        depends_on:
+            hub-supply-chain-api-db:
+                condition: service_healthy
+        networks:
+                default_hub:
+        restart: unless-stopped
+        logging:
+            driver: json-file
+            options:
+                max-size: "512m"
+                max-file: "5"
+
+    hub-supply-chain-api-db:
+        container_name: hub-supply-chain-api-db
+        image: mysql:5.7.22
+        # Allow to connect with workbench
+        ports:
+            - "3306:3306"
+        volumes:
+            - /data/hub/supply-chain-api-db:/var/lib/mysql
+        environment:
+          - MYSQL_ROOT_PASSWORD=root
+          - MYSQL_DATABASE=supplyChain
+          - MYSQL_USER=supplyChainAdmin
+          - MYSQL_PASSWORD=supplyChainAdmin
+        healthcheck:
+          test: mysqladmin -uroot -proot ping
+          interval: 2s
+          timeout: 5s
+          retries: 30
+        networks:
+                default_hub:
+        restart: unless-stopped
+        logging:
+            driver: json-file
+            options:
+                max-size: "512m"
+                max-file: "5"
+
+    spring-boot-admin-server:
+        container_name: spring-boot-admin-server
+        image: "slydeveloper/spring-boot-admin:1.0"
+        ports:
+            - 8090:1111
+        environment:
+          - SPRING_BOOT_ADMIN_SECURITY_ENABLED=false
+        networks:
+                default_hub:
+        restart: unless-stopped
+        logging:
+            driver: json-file
+            options:
+                max-size: "512m"
+                max-file: "5"
+
+networks:
+    default_hub:
+        ipam:
+            driver: default
+            config:
+            - subnet: 172.18.0.1/16

@@ -1,0 +1,64 @@
+{
+  "header": {
+    "version": 1,
+    "programID": 1,
+    "action": "MINIMUM",
+    "repeat": 1,
+    "allowOpenPortTx": true,
+    "channels": [
+      0,
+      1,
+      2,
+      3
+    ],
+    "tmaLedControl": "OFF"
+  },
+  "inventories": [
+    {
+      "inventoryID": 1,
+      "roundType": "ROUNDTYPE_FIXED_COUNT",
+      "count": 1,
+      "power_dBm": 30,
+      "selectChainFirstLabel": "basicSelect",
+      "selectChainRepeatLabel": "basicSelect",
+      "phyLayerLabel": "basicPhy",
+      "transmitSource": "STR_400",
+      "rxAntennaConfig": [
+        {
+          "antennaPort1": "PORT_1",
+          "expanderPort1": "NONE"
+        }
+      ],
+      "txAntennaPort": "PORT_1",
+      "txExpanderPort": "NONE"
+    }
+  ],
+  "selectChains": [
+    {
+      "label": "basicSelect",
+      "selectChain": [
+        {
+          "target": "SEL_TARGET_S1",
+          "action": "SEL_ACTION_M_NM_SET",
+          "bank": "BANK_TID",
+          "maskLength": 0,
+          "truncate": 0,
+          "maskStart": 8,
+          "mask": ""
+        }
+      ]
+    }
+  ],
+  "physicalLayers": [
+    {
+      "label": "basicPhy",
+      "target": "TARGET_A",
+      "q": 5,
+      "session": "SESSION_S1",
+      "lf": "LF_256KHZ",
+      "tari": "TARI_25USEC",
+      "sl": "INV_SL_ALL",
+      "m": "MODULATION_M4"
+    }
+  ]
+}

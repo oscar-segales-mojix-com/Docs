@@ -1,0 +1,39 @@
+Cannot process this file receivingTags_TID9_E200B08207C8D767_2020-12-16-16-14-44-023.xml.
+Error reported: Validation failed for: com.sun.org.apache.xerces.internal.jaxp.validation.SimpleXMLSchema@717d2a2d
+errors: [
+org.xml.sax.SAXParseException: cvc-complex-type.4: Attribute 'date' must appear on element 'request'., Line : 3, Column : 44
+]. Exchange[ID-tag-management-d547fb466-vkvn4-44551-1607914253099-0-5]
+
+org.apache.camel.processor.validation.SchemaValidationException: Validation failed for: com.sun.org.apache.xerces.internal.jaxp.validation.SimpleXMLSchema@717d2a2d
+errors: [
+org.xml.sax.SAXParseException: cvc-complex-type.4: Attribute 'date' must appear on element 'request'., Line : 3, Column : 44
+]. Exchange[ID-tag-management-d547fb466-vkvn4-44551-1607914253099-0-5]
+	at org.apache.camel.processor.validation.DefaultValidationErrorHandler.handleErrors(DefaultValidationErrorHandler.java:76)
+	at org.apache.camel.processor.validation.ValidatingProcessor.doProcess(ValidatingProcessor.java:151)
+	at org.apache.camel.processor.validation.ValidatingProcessor.process(ValidatingProcessor.java:86)
+	at org.apache.camel.component.validator.ValidatorProducer.process(ValidatorProducer.java:37)
+	at org.apache.camel.processor.SendProcessor.process(SendProcessor.java:145)
+	at org.apache.camel.processor.interceptor.TraceInterceptor.process(TraceInterceptor.java:177)
+	at org.apache.camel.processor.RedeliveryErrorHandler.process(RedeliveryErrorHandler.java:541)
+	at org.apache.camel.processor.CamelInternalProcessor.process(CamelInternalProcessor.java:198)
+	at org.apache.camel.processor.Pipeline.process(Pipeline.java:120)
+	at org.apache.camel.processor.Pipeline.process(Pipeline.java:83)
+	at org.apache.camel.processor.ChoiceProcessor.process(ChoiceProcessor.java:117)
+	at org.apache.camel.processor.interceptor.TraceInterceptor.process(TraceInterceptor.java:177)
+	at org.apache.camel.processor.RedeliveryErrorHandler.process(RedeliveryErrorHandler.java:541)
+	at org.apache.camel.processor.CamelInternalProcessor.process(CamelInternalProcessor.java:198)
+	at org.apache.camel.processor.Pipeline.process(Pipeline.java:120)
+	at org.apache.camel.processor.Pipeline.process(Pipeline.java:83)
+	at org.apache.camel.processor.CamelInternalProcessor.process(CamelInternalProcessor.java:198)
+	at org.apache.camel.component.file.GenericFileConsumer.processExchange(GenericFileConsumer.java:451)
+	at org.apache.camel.component.file.GenericFileConsumer.processBatch(GenericFileConsumer.java:218)
+	at org.apache.camel.component.file.GenericFileConsumer.poll(GenericFileConsumer.java:182)
+	at org.apache.camel.impl.ScheduledPollConsumer.doRun(ScheduledPollConsumer.java:174)
+	at org.apache.camel.impl.ScheduledPollConsumer.run(ScheduledPollConsumer.java:101)
+	at java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:511)
+	at java.util.concurrent.FutureTask.runAndReset(FutureTask.java:308)
+	at java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.access$301(ScheduledThreadPoolExecutor.java:180)
+	at java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.run(ScheduledThreadPoolExecutor.java:294)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1149)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:624)
+	at java.lang.Thread.run(Thread.java:748)

@@ -1,0 +1,22 @@
+version: "3.5"
+
+services:
+  client:
+        image: gcr.io/mojix-registry/kafka-secure-client:master
+        environment:
+          - KAFKA_SERVERS=ft-red-dev-kafka.vizix.io:9493
+          - KAFKA_TOPIC=___notifications___fittingrooms
+          - KAFKA_CONSUMER_GROUP=KafkaQA4
+          - KAFKA_SECURITY_PROTOCOL=SSL
+          - SSL_TRUSTSTORE_LOCATION=/home/gradle/build/kafka.truststore.jks
+          - SSL_TRUSTSTORE_PASSWORD=laptop-glove-medicine
+          - SSL_KEYSTORE_LOCATION=/home/gradle/build/kafka.keystore.jks
+          - SSL_KEYSTORE_PASSWORD=laptop-glove-medicine
+          - SSL_KEY_PASSWORD=laptop-glove-medicine
+        extra_hosts:
+          - "red-dev-kafka:40.89.141.169"
+        dns_search:
+          - "vizix.io"
+        volumes:
+          - ./ks/kafka.truststore.jks:/home/gradle/build/kafka.truststore.jks
+          - ./ks/kafka.keystore.jks:/home/gradle/build/kafka.keystore.jks

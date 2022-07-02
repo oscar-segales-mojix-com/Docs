@@ -1,0 +1,56 @@
+
+Server Credentials:
+
+ip: 10.100.1.213
+user: mojix
+pass: mojix2017
+
+0$@rz3g.
+
+
+WEB-APP
+
+https://staging.vizix.io
+usuario: mojix_test
+pasword: m0jixInc!
+
+APP
+server: dev.vizix.io
+username: tester
+password: testislife
+unlock settings: m0j1x123
+
+
+
+3034016B4400024000002710 urn:epc:id:sgtin:0023249.000009.10000 00023249000099 ----
+3034016B4400024000002711 urn:epc:id:sgtin:0023249.000009.10001 00023249000099
+
+3034016B440002733918E008 urn:epc:id:sgtin:0023249.000009.220001263624 00023249000099
+
+3034016B440002733918E008 urn:epc:id:sgtin:0023249.000009.220001263624 00023249000099 ----
+
+3034019C5006704000000002 urn:epc:id:sgtin:0026388.006593.2 00026388065936 ----
+3034019C5006704000000003 urn:epc:id:sgtin:0026388.006593.3 00026388065936
+
+
+
+
+Enviar put
+Revisar que se creo
+Report RefList -> Reflist was created
+Inventory App -> reflist displayed the list of expected products
+Inventory App -> Scan tags until complete reflist
+Inventory App -> Send reflist as In prgress
+Inventory App -> enter again, items scaned before should be listed
+Inventory App -> Send Reflist as Done
+--For new items -> UDFs were created
+
+Packing as Done
+Shipping as Done
+Receiving as Done
+
+
+
+
+
+

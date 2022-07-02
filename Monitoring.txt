@@ -1,0 +1,73 @@
+HUB2
+	ssh hub2@10.100.0.178
+	m0j1xInc
+
+COMMANDS
+	df -h ->partitions
+	top
+	free -tm -> MEM AND SWAP
+	ls -1 /dev/ | wc -l -> NUMMBER OF FILES
+ 
+LOGS
+	cd /data/hub/tomcat/logs
+	1.- tail -f hal-hspn.log
+	2.- tail -f tags-AllReadedTags_10.100.1.171.csv
+	3.- tial -f XPtags-	    .csv
+
+	cd /data/hub/heartbeat/conf
+	1.- cat myDevices.json
+
+HS-PN & xPoints (RFID devices)
+	http://10.100.0.178:8080/
+	1.- Click on Manager App
+	2.- Click on /hal-administration link
+		PN-METRICS.- http://10.100.0.178:8080/hal-administration/#/
+	3.- Click on /static link
+		* Last Configuration Page LINK:
+			{
+			  "id" : "hub2",
+			  "limitBatLevel" : 3600,
+			  "hs" : {
+			    "HS14" : 1550783273324
+			  },
+			  "pn" : {
+			    "11" : 1550765290425,
+			    "12" : 1550765368152
+			  },
+			  "creation" : 1550870506569
+			}
+		* Performances Page LINK
+			PN		NBREAD	NBASSO
+			11		14		14
+			12		1		0
+		* PN inventory Page 
+			PN Inventory DATA: PN	X	Y	Z	Area	HS	dist HS-PN	rssi HS-PN	nb of Tags	nb of Tags Associate	XEstimate	YEstimate	dist floorPlan	battery (mV)	FW versions	Mac Adress	rfidProfil	logical area	rf rssi	max power	read duration	mux Status	comment
+		* HS Inventory Page
+			HS Inventory DATA: HS Satellite	X	Y	Z	Floor	HS Master	nb PN Seen	nb PN linked	nb of Tags	controller IP	controller Info	controller Status	reader IP	reader Info	reader Status
+		* Fixtures last inventory Page 
+			Fixture				Properties
+			3663328.00001.273	1 Antennas Group
+			3663328.00001.274	1 Antennas Group
+		* RFID Devices Page:
+			Type			IP				Last connection		Connection		Reading
+			XpointReader	10.100.1.27		2019 02 25 16:34	connection OK	reading OK
+
+
+
+
+Note created during Bug Validation – Rejected Issue:
+Description of tests done:
+This problem has been reproduced again in qa.vizix.io v6.51.1, in the following columns.
+SXC DASHBOARDS -> Device Configuration Dashboard:
+
+HPSN -> Hot Spots: by Hub and Area
+HSPN -> Power Nodes: by Power Node and Mac Address
+HSPN Legacy -> Power Nodes: by Mac Address, RFID Profile and Fixture
+Device -> Printer: by Name and Fixture
+Device -> POS: by Fixture
+Device -> Passthrough: by Fixture
+Device -> POE: by Fixture
+
+This bug was validated in qa.vizix.io v6.51.1 and v6.50 in dashboards.
+
+

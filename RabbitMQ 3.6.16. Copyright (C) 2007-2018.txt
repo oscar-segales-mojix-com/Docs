@@ -1,0 +1,570 @@
+            RabbitMQ 3.6.16. Copyright (C) 2007-2018 Pivotal Software, Inc.
+rabbitmq_1  |   ##  ##      Licensed under the MPL.  See http://www.rabbitmq.com/
+rabbitmq_1  |   ##  ##
+rabbitmq_1  |   ##########  Logs: tty
+rabbitmq_1  |   ######  ##        tty
+rabbitmq_1  |   ##########
+rabbitmq_1  |               Starting broker...
+rabbitmq_1  | 
+rabbitmq_1  | =INFO REPORT==== 8-Jun-2022::13:10:28 ===
+rabbitmq_1  | Starting RabbitMQ 3.6.16 on Erlang 20.3.4
+rabbitmq_1  | Copyright (C) 2007-2018 Pivotal Software, Inc.
+rabbitmq_1  | Licensed under the MPL.  See http://www.rabbitmq.com/
+rabbitmq_1  | 
+rabbitmq_1  | =INFO REPORT==== 8-Jun-2022::13:10:28 ===
+rabbitmq_1  | node           : rabbit@MOJIX-HUB01
+rabbitmq_1  | home dir       : /var/lib/rabbitmq
+rabbitmq_1  | config file(s) : /etc/rabbitmq/rabbitmq.config (not found)
+rabbitmq_1  | cookie hash    : jScHQ4Uwft/KvrRuuaTTmg==
+rabbitmq_1  | log            : tty
+rabbitmq_1  | sasl log       : tty
+rabbitmq_1  | database dir   : /var/lib/rabbitmq/mnesia/rabbit@MOJIX-HUB01
+rabbitmq_1  | 
+rabbitmq_1  | =INFO REPORT==== 8-Jun-2022::13:10:29 ===
+rabbitmq_1  | Memory high watermark set to 9619 MiB (10087194624 bytes) of 24049 MiB (25217986560 bytes) total
+rabbitmq_1  | 
+rabbitmq_1  | =INFO REPORT==== 8-Jun-2022::13:10:29 ===
+rabbitmq_1  | Enabling free disk space monitoring
+rabbitmq_1  | 
+rabbitmq_1  | =INFO REPORT==== 8-Jun-2022::13:10:29 ===
+rabbitmq_1  | Disk free limit set to 50MB
+rabbitmq_1  | 
+rabbitmq_1  | =INFO REPORT==== 8-Jun-2022::13:10:29 ===
+rabbitmq_1  | Limiting to approx 1048476 file handles (943626 sockets)
+rabbitmq_1  | 
+rabbitmq_1  | =INFO REPORT==== 8-Jun-2022::13:10:29 ===
+rabbitmq_1  | FHC read buffering:  OFF
+rabbitmq_1  | FHC write buffering: ON
+rabbitmq_1  | 
+rabbitmq_1  | =INFO REPORT==== 8-Jun-2022::13:10:30 ===
+rabbitmq_1  | Database directory at /var/lib/rabbitmq/mnesia/rabbit@MOJIX-HUB01 is empty. Initialising from scratch...
+rabbitmq_1  | 
+rabbitmq_1  | =INFO REPORT==== 8-Jun-2022::13:10:30 ===
+rabbitmq_1  |     application: mnesia
+rabbitmq_1  |     exited: stopped
+rabbitmq_1  |     type: temporary
+rabbitmq_1  | 
+rabbitmq_1  | =INFO REPORT==== 8-Jun-2022::13:10:32 ===
+rabbitmq_1  | Waiting for Mnesia tables for 30000 ms, 9 retries left
+rabbitmq_1  | 
+rabbitmq_1  | =INFO REPORT==== 8-Jun-2022::13:10:32 ===
+rabbitmq_1  | Waiting for Mnesia tables for 30000 ms, 9 retries left
+rabbitmq_1  | 
+rabbitmq_1  | =INFO REPORT==== 8-Jun-2022::13:10:32 ===
+rabbitmq_1  | Waiting for Mnesia tables for 30000 ms, 9 retries left
+rabbitmq_1  | 
+rabbitmq_1  | =INFO REPORT==== 8-Jun-2022::13:10:32 ===
+rabbitmq_1  | Priority queues enabled, real BQ is rabbit_variable_queue
+rabbitmq_1  | 
+rabbitmq_1  | =INFO REPORT==== 8-Jun-2022::13:10:33 ===
+rabbitmq_1  | Starting rabbit_node_monitor
+rabbitmq_1  | 
+rabbitmq_1  | =INFO REPORT==== 8-Jun-2022::13:10:33 ===
+rabbitmq_1  | Management plugin: using rates mode 'basic'
+rabbitmq_1  | 
+rabbitmq_1  | =INFO REPORT==== 8-Jun-2022::13:10:33 ===
+rabbitmq_1  | msg_store_transient: using rabbit_msg_store_ets_index to provide index
+rabbitmq_1  | 
+rabbitmq_1  | =INFO REPORT==== 8-Jun-2022::13:10:33 ===
+rabbitmq_1  | msg_store_persistent: using rabbit_msg_store_ets_index to provide index
+rabbitmq_1  | 
+rabbitmq_1  | =WARNING REPORT==== 8-Jun-2022::13:10:33 ===
+rabbitmq_1  | msg_store_persistent: rebuilding indices from scratch
+rabbitmq_1  | 
+rabbitmq_1  | =INFO REPORT==== 8-Jun-2022::13:10:33 ===
+rabbitmq_1  | Adding vhost '/'
+rabbitmq_1  | 
+rabbitmq_1  | =INFO REPORT==== 8-Jun-2022::13:10:34 ===
+rabbitmq_1  | Creating user 'guest'
+rabbitmq_1  | 
+rabbitmq_1  | =INFO REPORT==== 8-Jun-2022::13:10:34 ===
+rabbitmq_1  | Setting user tags for user 'guest' to [administrator]
+rabbitmq_1  | 
+rabbitmq_1  | =INFO REPORT==== 8-Jun-2022::13:10:35 ===
+rabbitmq_1  | Setting permissions for 'guest' in '/' to '.*', '.*', '.*'
+rabbitmq_1  | 
+rabbitmq_1  | =INFO REPORT==== 8-Jun-2022::13:10:35 ===
+rabbitmq_1  | started TCP Listener on [::]:5672
+rabbitmq_1  | 
+rabbitmq_1  | =INFO REPORT==== 8-Jun-2022::13:10:35 ===
+rabbitmq_1  | Management plugin started. Port: 15672
+rabbitmq_1  | 
+rabbitmq_1  | =INFO REPORT==== 8-Jun-2022::13:10:35 ===
+rabbitmq_1  | Statistics database started.
+rabbitmq_1  |  completed with 8 plugins.
+rabbitmq_1  | 
+rabbitmq_1  | =INFO REPORT==== 8-Jun-2022::13:10:35 ===
+rabbitmq_1  | Server startup complete; 8 plugins started.
+rabbitmq_1  |  * rabbitmq_shovel_management
+rabbitmq_1  |  * rabbitmq_management
+rabbitmq_1  |  * rabbitmq_management_agent
+rabbitmq_1  |  * rabbitmq_shovel
+rabbitmq_1  |  * amqp_client
+rabbitmq_1  |  * rabbitmq_web_dispatch
+rabbitmq_1  |  * cowboy
+rabbitmq_1  |  * cowlib
+rabbitmq_1  | Creating user "whiterabbit"
+rabbitmq_1  | 
+rabbitmq_1  | =INFO REPORT==== 8-Jun-2022::13:10:37 ===
+rabbitmq_1  | Creating user 'whiterabbit'
+rabbitmq_1  | Setting tags for user "whiterabbit" to [administrator]
+rabbitmq_1  | 
+rabbitmq_1  | =INFO REPORT==== 8-Jun-2022::13:10:38 ===
+rabbitmq_1  | Setting user tags for user 'whiterabbit' to [administrator]
+rabbitmq_1  | Setting permissions for user "whiterabbit" in vhost "/"
+rabbitmq_1  | 
+rabbitmq_1  | =INFO REPORT==== 8-Jun-2022::13:10:39 ===
+rabbitmq_1  | Setting permissions for 'whiterabbit' in '/' to '.*', '.*', '.*'
+rabbitmq_1  | exchange declared
+rabbitmq_1  | queue declared
+rabbitmq_1  | queue declared
+rabbitmq_1  | binding declared
+rabbitmq_1  | Setting runtime parameter "coreServer_item_status_shovel" for component "shovel" to "{\"src-uri\": \"amqp://\", \"src-queue\": \"local_jsonEpcis_queue\", \"dest-uri\": \"amqps://admin:one-frugal-favorite@10.128.0.59:5671\", \"dest-exchange\": \"statemachine_jsonEpcis_input\"}"
+rabbitmq_1  | Setting runtime parameter "legacy_core_server_MOJIX-HUB01_local_printing" for component "shovel" to "{\"src-uri\": \"amqps://admin:one-frugal-favorite@10.128.0.59:5671\", \"src-exchange\": \"printing_exchange\", \"src-exchange-key\":\"MOJIX-HUB01\", \"dest-uri\": \"amqp://\", \"dest-queue\":\"MOJIX-HUB01_local_printing\"}"
+rabbitmq_1  | 
+rabbitmq_1  | =ERROR REPORT==== 8-Jun-2022::13:10:51 ===
+rabbitmq_1  | Shovel 'legacy_core_server_MOJIX-HUB01_local_printing' in vhost '/' failed to connect (URI: amqps://10.128.0.59:5671): {tls_alert,"bad record mac"}
+rabbitmq_1  | 
+rabbitmq_1  | =ERROR REPORT==== 8-Jun-2022::13:10:51 ===
+rabbitmq_1  | Shovel 'legacy_core_server_MOJIX-HUB01_local_printing' in vhost '/' has no more URIs to try for connection and will terminate
+rabbitmq_1  | 
+rabbitmq_1  | =ERROR REPORT==== 8-Jun-2022::13:10:51 ===
+rabbitmq_1  | ** Generic server <0.700.0> terminating
+rabbitmq_1  | ** Last message in was {'$gen_cast',init}
+rabbitmq_1  | ** When Server state == {state,undefined,undefined,undefined,undefined,
+rabbitmq_1  |                             {<<"/">>,
+rabbitmq_1  |                              <<"legacy_core_server_MOJIX-HUB01_local_printing">>},
+rabbitmq_1  |                             dynamic,
+rabbitmq_1  |                             {shovel,
+rabbitmq_1  |                                 {endpoint,
+rabbitmq_1  |                                     ["amqps://admin:one-frugal-favorite@10.128.0.59:5671"],
+rabbitmq_1  |                                     #Fun<rabbit_shovel_parameters.3.22841904>},
+rabbitmq_1  |                                 {endpoint,
+rabbitmq_1  |                                     ["amqp://"],
+rabbitmq_1  |                                     #Fun<rabbit_shovel_parameters.5.22841904>},
+rabbitmq_1  |                                 1000,on_confirm,
+rabbitmq_1  |                                 #Fun<rabbit_shovel_parameters.6.22841904>,
+rabbitmq_1  |                                 #Fun<rabbit_shovel_parameters.7.22841904>,
+rabbitmq_1  |                                 <<>>,1,never},
+rabbitmq_1  |                             undefined,undefined,undefined,undefined,undefined}
+rabbitmq_1  | ** Reason for termination == 
+rabbitmq_1  | ** {failed_to_connect_using_provided_uris,
+rabbitmq_1  |        [{rabbit_shovel_worker,make_conn_and_chan,2,
+rabbitmq_1  |             [{file,"src/rabbit_shovel_worker.erl"},{line,246}]},
+rabbitmq_1  |         {rabbit_shovel_worker,handle_cast,2,
+rabbitmq_1  |             [{file,"src/rabbit_shovel_worker.erl"},{line,63}]},
+rabbitmq_1  |         {gen_server2,handle_msg,2,[{file,"src/gen_server2.erl"},{line,1050}]},
+rabbitmq_1  |         {proc_lib,init_p_do_apply,3,[{file,"proc_lib.erl"},{line,247}]}]}
+rabbitmq_1  | 
+rabbitmq_1  | =CRASH REPORT==== 8-Jun-2022::13:10:51 ===
+rabbitmq_1  |   crasher:
+rabbitmq_1  |     initial call: rabbit_shovel_worker:init/1
+rabbitmq_1  |     pid: <0.700.0>
+rabbitmq_1  |     registered_name: []
+rabbitmq_1  |     exception exit: {failed_to_connect_using_provided_uris,
+rabbitmq_1  |                         [{rabbit_shovel_worker,make_conn_and_chan,2,
+rabbitmq_1  |                              [{file,"src/rabbit_shovel_worker.erl"},
+rabbitmq_1  |                               {line,246}]},
+rabbitmq_1  |                          {rabbit_shovel_worker,handle_cast,2,
+rabbitmq_1  |                              [{file,"src/rabbit_shovel_worker.erl"},
+rabbitmq_1  |                               {line,63}]},
+rabbitmq_1  |                          {gen_server2,handle_msg,2,
+rabbitmq_1  |                              [{file,"src/gen_server2.erl"},{line,1050}]},
+rabbitmq_1  |                          {proc_lib,init_p_do_apply,3,
+rabbitmq_1  |                              [{file,"proc_lib.erl"},{line,247}]}]}
+rabbitmq_1  |       in function  gen_server2:terminate/3 (src/gen_server2.erl, line 1166)
+rabbitmq_1  |     ancestors: [<0.699.0>,<0.402.0>,rabbit_shovel_dyn_worker_sup_sup,
+rabbitmq_1  |                   rabbit_shovel_sup,<0.398.0>]
+rabbitmq_1  |     message_queue_len: 0
+rabbitmq_1  |     messages: []
+rabbitmq_1  |     links: [<0.699.0>]
+rabbitmq_1  |     dictionary: [{rand_seed,{#{bits => 58,jump => #Fun<rand.8.15449617>,
+rabbitmq_1  |                                 next => #Fun<rand.5.15449617>,type => exrop,
+rabbitmq_1  |                                 uniform => #Fun<rand.6.15449617>,
+rabbitmq_1  |                                 uniform_n => #Fun<rand.7.15449617>,
+rabbitmq_1  |                                 weak_low_bits => 1},
+rabbitmq_1  |                               [127114483527649140|6051596821330062]}}]
+rabbitmq_1  |     trap_exit: false
+rabbitmq_1  |     status: running
+rabbitmq_1  |     heap_size: 1598
+rabbitmq_1  |     stack_size: 27
+rabbitmq_1  |     reductions: 3863
+rabbitmq_1  |   neighbours:
+rabbitmq_1  | 
+rabbitmq_1  | =SUPERVISOR REPORT==== 8-Jun-2022::13:10:51 ===
+rabbitmq_1  |      Supervisor: {<0.699.0>,rabbit_shovel_dyn_worker_sup}
+rabbitmq_1  |      Context:    child_terminated
+rabbitmq_1  |      Reason:     {failed_to_connect_using_provided_uris,
+rabbitmq_1  |                      [{rabbit_shovel_worker,make_conn_and_chan,2,
+rabbitmq_1  |                           [{file,"src/rabbit_shovel_worker.erl"},{line,246}]},
+rabbitmq_1  |                       {rabbit_shovel_worker,handle_cast,2,
+rabbitmq_1  |                           [{file,"src/rabbit_shovel_worker.erl"},{line,63}]},
+rabbitmq_1  |                       {gen_server2,handle_msg,2,
+rabbitmq_1  |                           [{file,"src/gen_server2.erl"},{line,1050}]},
+rabbitmq_1  |                       {proc_lib,init_p_do_apply,3,
+rabbitmq_1  |                           [{file,"proc_lib.erl"},{line,247}]}]}
+rabbitmq_1  |      Offender:   [{pid,<0.700.0>},
+rabbitmq_1  |                   {name,
+rabbitmq_1  |                       {<<"/">>,
+rabbitmq_1  |                        <<"legacy_core_server_MOJIX-HUB01_local_printing">>}},
+rabbitmq_1  |                   {mfargs,
+rabbitmq_1  |                       {rabbit_shovel_worker,start_link,
+rabbitmq_1  |                           [dynamic,
+rabbitmq_1  |                            {<<"/">>,
+rabbitmq_1  |                             <<"legacy_core_server_MOJIX-HUB01_local_printing">>},
+rabbitmq_1  |                            [{<<"src-uri">>,
+rabbitmq_1  |                              <<"amqps://admin:one-frugal-favorite@10.128.0.59:5671">>},
+rabbitmq_1  |                             {<<"src-exchange">>,<<"printing_exchange">>},
+rabbitmq_1  |                             {<<"src-exchange-key">>,<<"MOJIX-HUB01">>},
+rabbitmq_1  |                             {<<"dest-uri">>,<<"amqp://">>},
+rabbitmq_1  |                             {<<"dest-queue">>,
+rabbitmq_1  |                              <<"MOJIX-HUB01_local_printing">>}]]}},
+rabbitmq_1  |                   {restart_type,{transient,1}},
+rabbitmq_1  |                   {shutdown,4294967295},
+rabbitmq_1  |                   {child_type,worker}]
+rabbitmq_1  | 
+rabbitmq_1  | Setting runtime parameter "core_server_MOJIX-HUB01_local_printing" for component "shovel" to "{\"src-uri\": \"amqps://admin:one-frugal-favorite@10.128.0.59:5671\", \"src-exchange\": \"printing_exchange\", \"src-exchange-key\":\"PERN.MOJIX-HUB01\", \"dest-uri\": \"amqp://\", \"dest-queue\":\"MOJIX-HUB01_local_printing\"}"
+rabbitmq_1  | Exported definitions for localhost to "/etc/rabbitmq/custom_definitions.json"
+rabbitmq_1  | 
+rabbitmq_1  | =ERROR REPORT==== 8-Jun-2022::13:10:52 ===
+rabbitmq_1  | Shovel 'legacy_core_server_MOJIX-HUB01_local_printing' in vhost '/' failed to connect (URI: amqps://10.128.0.59:5671): {tls_alert,"bad record mac"}
+rabbitmq_1  | 
+rabbitmq_1  | =ERROR REPORT==== 8-Jun-2022::13:10:52 ===
+rabbitmq_1  | Shovel 'legacy_core_server_MOJIX-HUB01_local_printing' in vhost '/' has no more URIs to try for connection and will terminate
+rabbitmq_1  | 
+rabbitmq_1  | =ERROR REPORT==== 8-Jun-2022::13:10:52 ===
+rabbitmq_1  | ** Generic server <0.711.0> terminating
+rabbitmq_1  | ** Last message in was {'$gen_cast',init}
+rabbitmq_1  | ** When Server state == {state,undefined,undefined,undefined,undefined,
+rabbitmq_1  |                             {<<"/">>,
+rabbitmq_1  |                              <<"legacy_core_server_MOJIX-HUB01_local_printing">>},
+rabbitmq_1  |                             dynamic,
+rabbitmq_1  |                             {shovel,
+rabbitmq_1  |                                 {endpoint,
+rabbitmq_1  |                                     ["amqps://admin:one-frugal-favorite@10.128.0.59:5671"],
+rabbitmq_1  |                                     #Fun<rabbit_shovel_parameters.3.22841904>},
+rabbitmq_1  |                                 {endpoint,
+rabbitmq_1  |                                     ["amqp://"],
+rabbitmq_1  |                                     #Fun<rabbit_shovel_parameters.5.22841904>},
+rabbitmq_1  |                                 1000,on_confirm,
+rabbitmq_1  |                                 #Fun<rabbit_shovel_parameters.6.22841904>,
+rabbitmq_1  |                                 #Fun<rabbit_shovel_parameters.7.22841904>,
+rabbitmq_1  |                                 <<>>,1,never},
+rabbitmq_1  |                             undefined,undefined,undefined,undefined,undefined}
+rabbitmq_1  | ** Reason for termination == 
+rabbitmq_1  | ** {failed_to_connect_using_provided_uris,
+rabbitmq_1  |        [{rabbit_shovel_worker,make_conn_and_chan,2,
+rabbitmq_1  |             [{file,"src/rabbit_shovel_worker.erl"},{line,246}]},
+rabbitmq_1  |         {rabbit_shovel_worker,handle_cast,2,
+rabbitmq_1  |             [{file,"src/rabbit_shovel_worker.erl"},{line,63}]},
+rabbitmq_1  |         {gen_server2,handle_msg,2,[{file,"src/gen_server2.erl"},{line,1050}]},
+rabbitmq_1  |         {proc_lib,init_p_do_apply,3,[{file,"proc_lib.erl"},{line,247}]}]}
+rabbitmq_1  | 
+rabbitmq_1  | =CRASH REPORT==== 8-Jun-2022::13:10:52 ===
+rabbitmq_1  |   crasher:
+rabbitmq_1  |     initial call: rabbit_shovel_worker:init/1
+rabbitmq_1  |     pid: <0.711.0>
+rabbitmq_1  |     registered_name: []
+rabbitmq_1  |     exception exit: {failed_to_connect_using_provided_uris,
+rabbitmq_1  |                         [{rabbit_shovel_worker,make_conn_and_chan,2,
+rabbitmq_1  |                              [{file,"src/rabbit_shovel_worker.erl"},
+rabbitmq_1  |                               {line,246}]},
+rabbitmq_1  |                          {rabbit_shovel_worker,handle_cast,2,
+rabbitmq_1  |                              [{file,"src/rabbit_shovel_worker.erl"},
+rabbitmq_1  |                               {line,63}]},
+rabbitmq_1  |                          {gen_server2,handle_msg,2,
+rabbitmq_1  |                              [{file,"src/gen_server2.erl"},{line,1050}]},
+rabbitmq_1  |                          {proc_lib,init_p_do_apply,3,
+rabbitmq_1  |                              [{file,"proc_lib.erl"},{line,247}]}]}
+rabbitmq_1  |       in function  gen_server2:terminate/3 (src/gen_server2.erl, line 1166)
+rabbitmq_1  |     ancestors: [<0.699.0>,<0.402.0>,rabbit_shovel_dyn_worker_sup_sup,
+rabbitmq_1  |                   rabbit_shovel_sup,<0.398.0>]
+rabbitmq_1  |     message_queue_len: 0
+rabbitmq_1  |     messages: []
+rabbitmq_1  |     links: [<0.699.0>]
+rabbitmq_1  |     dictionary: [{rand_seed,{#{bits => 58,jump => #Fun<rand.8.15449617>,
+rabbitmq_1  |                                 next => #Fun<rand.5.15449617>,type => exrop,
+rabbitmq_1  |                                 uniform => #Fun<rand.6.15449617>,
+rabbitmq_1  |                                 uniform_n => #Fun<rand.7.15449617>,
+rabbitmq_1  |                                 weak_low_bits => 1},
+rabbitmq_1  |                               [190320084283087241|204437396637117723]}}]
+rabbitmq_1  |     trap_exit: false
+rabbitmq_1  |     status: running
+rabbitmq_1  |     heap_size: 1598
+rabbitmq_1  |     stack_size: 27
+rabbitmq_1  |     reductions: 3863
+rabbitmq_1  |   neighbours:
+rabbitmq_1  | 
+rabbitmq_1  | =SUPERVISOR REPORT==== 8-Jun-2022::13:10:52 ===
+rabbitmq_1  |      Supervisor: {<0.699.0>,rabbit_shovel_dyn_worker_sup}
+rabbitmq_1  |      Context:    child_terminated
+rabbitmq_1  |      Reason:     {failed_to_connect_using_provided_uris,
+rabbitmq_1  |                      [{rabbit_shovel_worker,make_conn_and_chan,2,
+rabbitmq_1  |                           [{file,"src/rabbit_shovel_worker.erl"},{line,246}]},
+rabbitmq_1  |                       {rabbit_shovel_worker,handle_cast,2,
+rabbitmq_1  |                           [{file,"src/rabbit_shovel_worker.erl"},{line,63}]},
+rabbitmq_1  |                       {gen_server2,handle_msg,2,
+rabbitmq_1  |                           [{file,"src/gen_server2.erl"},{line,1050}]},
+rabbitmq_1  |                       {proc_lib,init_p_do_apply,3,
+rabbitmq_1  |                           [{file,"proc_lib.erl"},{line,247}]}]}
+rabbitmq_1  |      Offender:   [{pid,<0.711.0>},
+rabbitmq_1  |                   {name,
+rabbitmq_1  |                       {<<"/">>,
+rabbitmq_1  |                        <<"legacy_core_server_MOJIX-HUB01_local_printing">>}},
+rabbitmq_1  |                   {mfargs,
+rabbitmq_1  |                       {rabbit_shovel_worker,start_link,
+rabbitmq_1  |                           [dynamic,
+rabbitmq_1  |                            {<<"/">>,
+rabbitmq_1  |                             <<"legacy_core_server_MOJIX-HUB01_local_printing">>},
+rabbitmq_1  |                            [{<<"src-uri">>,
+rabbitmq_1  |                              <<"amqps://admin:one-frugal-favorite@10.128.0.59:5671">>},
+rabbitmq_1  |                             {<<"src-exchange">>,<<"printing_exchange">>},
+rabbitmq_1  |                             {<<"src-exchange-key">>,<<"MOJIX-HUB01">>},
+rabbitmq_1  |                             {<<"dest-uri">>,<<"amqp://">>},
+rabbitmq_1  |                             {<<"dest-queue">>,
+rabbitmq_1  |                              <<"MOJIX-HUB01_local_printing">>}]]}},
+rabbitmq_1  |                   {restart_type,{transient,1}},
+rabbitmq_1  |                   {shutdown,4294967295},
+rabbitmq_1  |                   {child_type,worker}]
+rabbitmq_1  | 
+rabbitmq_1  | =========== INITIALISATION OK ===========
+rabbitmq_1  | 
+rabbitmq_1  | =ERROR REPORT==== 8-Jun-2022::13:10:53 ===
+rabbitmq_1  | Shovel 'legacy_core_server_MOJIX-HUB01_local_printing' in vhost '/' failed to connect (URI: amqps://10.128.0.59:5671): {tls_alert,"bad record mac"}
+rabbitmq_1  | 
+rabbitmq_1  | =ERROR REPORT==== 8-Jun-2022::13:10:53 ===
+rabbitmq_1  | Shovel 'legacy_core_server_MOJIX-HUB01_local_printing' in vhost '/' has no more URIs to try for connection and will terminate
+rabbitmq_1  | 
+rabbitmq_1  | =ERROR REPORT==== 8-Jun-2022::13:10:53 ===
+rabbitmq_1  | ** Generic server <0.746.0> terminating
+rabbitmq_1  | ** Last message in was {'$gen_cast',init}
+rabbitmq_1  | ** When Server state == {state,undefined,undefined,undefined,undefined,
+rabbitmq_1  |                             {<<"/">>,
+rabbitmq_1  |                              <<"legacy_core_server_MOJIX-HUB01_local_printing">>},
+rabbitmq_1  |                             dynamic,
+rabbitmq_1  |                             {shovel,
+rabbitmq_1  |                                 {endpoint,
+rabbitmq_1  |                                     ["amqps://admin:one-frugal-favorite@10.128.0.59:5671"],
+rabbitmq_1  |                                     #Fun<rabbit_shovel_parameters.3.22841904>},
+rabbitmq_1  |                                 {endpoint,
+rabbitmq_1  |                                     ["amqp://"],
+rabbitmq_1  |                                     #Fun<rabbit_shovel_parameters.5.22841904>},
+rabbitmq_1  |                                 1000,on_confirm,
+rabbitmq_1  |                                 #Fun<rabbit_shovel_parameters.6.22841904>,
+rabbitmq_1  |                                 #Fun<rabbit_shovel_parameters.7.22841904>,
+rabbitmq_1  |                                 <<>>,1,never},
+rabbitmq_1  |                             undefined,undefined,undefined,undefined,undefined}
+rabbitmq_1  | ** Reason for termination == 
+rabbitmq_1  | ** {failed_to_connect_using_provided_uris,
+rabbitmq_1  |        [{rabbit_shovel_worker,make_conn_and_chan,2,
+rabbitmq_1  |             [{file,"src/rabbit_shovel_worker.erl"},{line,246}]},
+rabbitmq_1  |         {rabbit_shovel_worker,handle_cast,2,
+rabbitmq_1  |             [{file,"src/rabbit_shovel_worker.erl"},{line,63}]},
+rabbitmq_1  |         {gen_server2,handle_msg,2,[{file,"src/gen_server2.erl"},{line,1050}]},
+rabbitmq_1  |         {proc_lib,init_p_do_apply,3,[{file,"proc_lib.erl"},{line,247}]}]}
+rabbitmq_1  | 
+rabbitmq_1  | =CRASH REPORT==== 8-Jun-2022::13:10:53 ===
+rabbitmq_1  |   crasher:
+rabbitmq_1  |     initial call: rabbit_shovel_worker:init/1
+rabbitmq_1  |     pid: <0.746.0>
+rabbitmq_1  |     registered_name: []
+rabbitmq_1  |     exception exit: {failed_to_connect_using_provided_uris,
+rabbitmq_1  |                         [{rabbit_shovel_worker,make_conn_and_chan,2,
+rabbitmq_1  |                              [{file,"src/rabbit_shovel_worker.erl"},
+rabbitmq_1  |                               {line,246}]},
+rabbitmq_1  |                          {rabbit_shovel_worker,handle_cast,2,
+rabbitmq_1  |                              [{file,"src/rabbit_shovel_worker.erl"},
+rabbitmq_1  |                               {line,63}]},
+rabbitmq_1  |                          {gen_server2,handle_msg,2,
+rabbitmq_1  |                              [{file,"src/gen_server2.erl"},{line,1050}]},
+rabbitmq_1  |                          {proc_lib,init_p_do_apply,3,
+rabbitmq_1  |                              [{file,"proc_lib.erl"},{line,247}]}]}
+rabbitmq_1  |       in function  gen_server2:terminate/3 (src/gen_server2.erl, line 1166)
+rabbitmq_1  |     ancestors: [<0.699.0>,<0.402.0>,rabbit_shovel_dyn_worker_sup_sup,
+rabbitmq_1  |                   rabbit_shovel_sup,<0.398.0>]
+rabbitmq_1  |     message_queue_len: 0
+rabbitmq_1  |     messages: []
+rabbitmq_1  |     links: [<0.699.0>]
+rabbitmq_1  |     dictionary: [{rand_seed,{#{bits => 58,jump => #Fun<rand.8.15449617>,
+rabbitmq_1  |                                 next => #Fun<rand.5.15449617>,type => exrop,
+rabbitmq_1  |                                 uniform => #Fun<rand.6.15449617>,
+rabbitmq_1  |                                 uniform_n => #Fun<rand.7.15449617>,
+rabbitmq_1  |                                 weak_low_bits => 1},
+rabbitmq_1  |                               [99423251995603972|26010614667623629]}}]
+rabbitmq_1  |     trap_exit: false
+rabbitmq_1  |     status: running
+rabbitmq_1  |     heap_size: 1598
+rabbitmq_1  |     stack_size: 27
+rabbitmq_1  |     reductions: 3863
+rabbitmq_1  |   neighbours:
+rabbitmq_1  | 
+rabbitmq_1  | =SUPERVISOR REPORT==== 8-Jun-2022::13:10:53 ===
+rabbitmq_1  |      Supervisor: {<0.699.0>,rabbit_shovel_dyn_worker_sup}
+rabbitmq_1  |      Context:    child_terminated
+rabbitmq_1  |      Reason:     {failed_to_connect_using_provided_uris,
+rabbitmq_1  |                      [{rabbit_shovel_worker,make_conn_and_chan,2,
+rabbitmq_1  |                           [{file,"src/rabbit_shovel_worker.erl"},{line,246}]},
+rabbitmq_1  |                       {rabbit_shovel_worker,handle_cast,2,
+rabbitmq_1  |                           [{file,"src/rabbit_shovel_worker.erl"},{line,63}]},
+rabbitmq_1  |                       {gen_server2,handle_msg,2,
+rabbitmq_1  |                           [{file,"src/gen_server2.erl"},{line,1050}]},
+rabbitmq_1  |                       {proc_lib,init_p_do_apply,3,
+rabbitmq_1  |                           [{file,"proc_lib.erl"},{line,247}]}]}
+rabbitmq_1  |      Offender:   [{pid,<0.746.0>},
+rabbitmq_1  |                   {name,
+rabbitmq_1  |                       {<<"/">>,
+rabbitmq_1  |                        <<"legacy_core_server_MOJIX-HUB01_local_printing">>}},
+rabbitmq_1  |                   {mfargs,
+rabbitmq_1  |                       {rabbit_shovel_worker,start_link,
+rabbitmq_1  |                           [dynamic,
+rabbitmq_1  |                            {<<"/">>,
+rabbitmq_1  |                             <<"legacy_core_server_MOJIX-HUB01_local_printing">>},
+rabbitmq_1  |                            [{<<"src-uri">>,
+rabbitmq_1  |                              <<"amqps://admin:one-frugal-favorite@10.128.0.59:5671">>},
+rabbitmq_1  |                             {<<"src-exchange">>,<<"printing_exchange">>},
+rabbitmq_1  |                             {<<"src-exchange-key">>,<<"MOJIX-HUB01">>},
+rabbitmq_1  |                             {<<"dest-uri">>,<<"amqp://">>},
+rabbitmq_1  |                             {<<"dest-queue">>,
+rabbitmq_1  |                              <<"MOJIX-HUB01_local_printing">>}]]}},
+rabbitmq_1  |                   {restart_type,{transient,1}},
+rabbitmq_1  |                   {shutdown,4294967295},
+rabbitmq_1  |                   {child_type,worker}]
+rabbitmq_1  | 
+rabbitmq_1  | 
+rabbitmq_1  | =ERROR REPORT==== 8-Jun-2022::13:10:55 ===
+rabbitmq_1  | Shovel 'legacy_core_server_MOJIX-HUB01_local_printing' in vhost '/' failed to connect (URI: amqps://10.128.0.59:5671): {tls_alert,"bad record mac"}
+rabbitmq_1  | 
+rabbitmq_1  | =ERROR REPORT==== 8-Jun-2022::13:10:55 ===
+rabbitmq_1  | Shovel 'legacy_core_server_MOJIX-HUB01_local_printing' in vhost '/' has no more URIs to try for connection and will terminate
+rabbitmq_1  | 
+rabbitmq_1  | =ERROR REPORT==== 8-Jun-2022::13:10:55 ===
+rabbitmq_1  | ** Generic server <0.773.0> terminating
+rabbitmq_1  | ** Last message in was {'$gen_cast',init}
+rabbitmq_1  | ** When Server state == {state,undefined,undefined,undefined,undefined,
+rabbitmq_1  |                             {<<"/">>,
+rabbitmq_1  |                              <<"legacy_core_server_MOJIX-HUB01_local_printing">>},
+rabbitmq_1  |                             dynamic,
+rabbitmq_1  |                             {shovel,
+rabbitmq_1  |                                 {endpoint,
+rabbitmq_1  |                                     ["amqps://admin:one-frugal-favorite@10.128.0.59:5671"],
+rabbitmq_1  |                                     #Fun<rabbit_shovel_parameters.3.22841904>},
+rabbitmq_1  |                                 {endpoint,
+rabbitmq_1  |                                     ["amqp://"],
+rabbitmq_1  |                                     #Fun<rabbit_shovel_parameters.5.22841904>},
+rabbitmq_1  |                                 1000,on_confirm,
+rabbitmq_1  |                                 #Fun<rabbit_shovel_parameters.6.22841904>,
+rabbitmq_1  |                                 #Fun<rabbit_shovel_parameters.7.22841904>,
+rabbitmq_1  |                                 <<>>,1,never},
+rabbitmq_1  |                             undefined,undefined,undefined,undefined,undefined}
+rabbitmq_1  | ** Reason for termination == 
+rabbitmq_1  | ** {failed_to_connect_using_provided_uris,
+rabbitmq_1  |        [{rabbit_shovel_worker,make_conn_and_chan,2,
+rabbitmq_1  |             [{file,"src/rabbit_shovel_worker.erl"},{line,246}]},
+rabbitmq_1  |         {rabbit_shovel_worker,handle_cast,2,
+rabbitmq_1  |             [{file,"src/rabbit_shovel_worker.erl"},{line,63}]},
+rabbitmq_1  |         {gen_server2,handle_msg,2,[{file,"src/gen_server2.erl"},{line,1050}]},
+rabbitmq_1  |         {proc_lib,init_p_do_apply,3,[{file,"proc_lib.erl"},{line,247}]}]}
+rabbitmq_1  | 
+rabbitmq_1  | =CRASH REPORT==== 8-Jun-2022::13:10:55 ===
+rabbitmq_1  |   crasher:
+rabbitmq_1  |     initial call: rabbit_shovel_worker:init/1
+rabbitmq_1  |     pid: <0.773.0>
+rabbitmq_1  |     registered_name: []
+rabbitmq_1  |     exception exit: {failed_to_connect_using_provided_uris,
+rabbitmq_1  |                         [{rabbit_shovel_worker,make_conn_and_chan,2,
+rabbitmq_1  |                              [{file,"src/rabbit_shovel_worker.erl"},
+rabbitmq_1  |                               {line,246}]},
+rabbitmq_1  |                          {rabbit_shovel_worker,handle_cast,2,
+rabbitmq_1  |                              [{file,"src/rabbit_shovel_worker.erl"},
+rabbitmq_1  |                               {line,63}]},
+rabbitmq_1  |                          {gen_server2,handle_msg,2,
+rabbitmq_1  |                              [{file,"src/gen_server2.erl"},{line,1050}]},
+rabbitmq_1  |                          {proc_lib,init_p_do_apply,3,
+rabbitmq_1  |                              [{file,"proc_lib.erl"},{line,247}]}]}
+rabbitmq_1  |       in function  gen_server2:terminate/3 (src/gen_server2.erl, line 1166)
+rabbitmq_1  |     ancestors: [<0.699.0>,<0.402.0>,rabbit_shovel_dyn_worker_sup_sup,
+rabbitmq_1  |                   rabbit_shovel_sup,<0.398.0>]
+rabbitmq_1  |     message_queue_len: 0
+rabbitmq_1  |     messages: []
+rabbitmq_1  |     links: [<0.699.0>]
+rabbitmq_1  |     dictionary: [{rand_seed,{#{bits => 58,jump => #Fun<rand.8.15449617>,
+rabbitmq_1  |                                 next => #Fun<rand.5.15449617>,type => exrop,
+rabbitmq_1  |                                 uniform => #Fun<rand.6.15449617>,
+rabbitmq_1  |                                 uniform_n => #Fun<rand.7.15449617>,
+rabbitmq_1  |                                 weak_low_bits => 1},
+rabbitmq_1  |                               [77609568530088129|137677193523485060]}}]
+rabbitmq_1  |     trap_exit: false
+rabbitmq_1  |     status: running
+rabbitmq_1  |     heap_size: 1598
+rabbitmq_1  |     stack_size: 27
+rabbitmq_1  |     reductions: 3859
+rabbitmq_1  |   neighbours:
+rabbitmq_1  | 
+rabbitmq_1  | =SUPERVISOR REPORT==== 8-Jun-2022::13:10:55 ===
+rabbitmq_1  |      Supervisor: {<0.699.0>,rabbit_shovel_dyn_worker_sup}
+rabbitmq_1  |      Context:    child_terminated
+rabbitmq_1  |      Reason:     {failed_to_connect_using_provided_uris,
+rabbitmq_1  |                      [{rabbit_shovel_worker,make_conn_and_chan,2,
+rabbitmq_1  |                           [{file,"src/rabbit_shovel_worker.erl"},{line,246}]},
+rabbitmq_1  |                       {rabbit_shovel_worker,handle_cast,2,
+rabbitmq_1  |                           [{file,"src/rabbit_shovel_worker.erl"},{line,63}]},
+rabbitmq_1  |                       {gen_server2,handle_msg,2,
+rabbitmq_1  |                           [{file,"src/gen_server2.erl"},{line,1050}]},
+rabbitmq_1  |                       {proc_lib,init_p_do_apply,3,
+rabbitmq_1  |                           [{file,"proc_lib.erl"},{line,247}]}]}
+rabbitmq_1  |      Offender:   [{pid,<0.773.0>},
+rabbitmq_1  |                   {name,
+rabbitmq_1  |                       {<<"/">>,
+rabbitmq_1  |                        <<"legacy_core_server_MOJIX-HUB01_local_printing">>}},
+rabbitmq_1  |                   {mfargs,
+rabbitmq_1  |                       {rabbit_shovel_worker,start_link,
+rabbitmq_1  |                           [dynamic,
+rabbitmq_1  |                            {<<"/">>,
+rabbitmq_1  |                             <<"legacy_core_server_MOJIX-HUB01_local_printing">>},
+rabbitmq_1  |                            [{<<"src-uri">>,
+rabbitmq_1  |                              <<"amqps://admin:one-frugal-favorite@10.128.0.59:5671">>},
+rabbitmq_1  |                             {<<"src-exchange">>,<<"printing_exchange">>},
+rabbitmq_1  |                             {<<"src-exchange-key">>,<<"MOJIX-HUB01">>},
+rabbitmq_1  |                             {<<"dest-uri">>,<<"amqp://">>},
+rabbitmq_1  |                             {<<"dest-queue">>,
+rabbitmq_1  |                              <<"MOJIX-HUB01_local_printing">>}]]}},
+rabbitmq_1  |                   {restart_type,{transient,1}},
+rabbitmq_1  |                   {shutdown,4294967295},
+rabbitmq_1  |                   {child_type,worker}]
+rabbitmq_1  | 
+rabbitmq_1  | 
+rabbitmq_1  | =INFO REPORT==== 8-Jun-2022::13:11:54 ===
+rabbitmq_1  | accepting AMQP connection <0.857.0> (10.220.0.11:40092 -> 10.220.0.4:5672)
+rabbitmq_1  | 
+rabbitmq_1  | =INFO REPORT==== 8-Jun-2022::13:11:54 ===
+rabbitmq_1  | connection <0.857.0> (10.220.0.11:40092 -> 10.220.0.4:5672): user 'whiterabbit' authenticated and granted access to vhost '/'
+rabbitmq_1  | 
+rabbitmq_1  | =INFO REPORT==== 8-Jun-2022::13:11:54 ===
+rabbitmq_1  | accepting AMQP connection <0.868.0> (10.220.0.11:40094 -> 10.220.0.4:5672)
+rabbitmq_1  | 
+rabbitmq_1  | =INFO REPORT==== 8-Jun-2022::13:11:54 ===
+rabbitmq_1  | connection <0.868.0> (10.220.0.11:40094 -> 10.220.0.4:5672): user 'whiterabbit' authenticated and granted access to vhost '/'
+rabbitmq_1  | 
+rabbitmq_1  | =INFO REPORT==== 8-Jun-2022::13:12:01 ===
+rabbitmq_1  | accepting AMQP connection <0.881.0> (10.220.0.11:40102 -> 10.220.0.4:5672)
+rabbitmq_1  | 
+rabbitmq_1  | =INFO REPORT==== 8-Jun-2022::13:12:01 ===
+rabbitmq_1  | connection <0.881.0> (10.220.0.11:40102 -> 10.220.0.4:5672): user 'whiterabbit' authenticated and granted access to vhost '/'
+rabbitmq_1  | 
+rabbitmq_1  | =INFO REPORT==== 8-Jun-2022::13:12:01 ===
+rabbitmq_1  | accepting AMQP connection <0.888.0> (10.220.0.11:40104 -> 10.220.0.4:5672)
+rabbitmq_1  | 
+rabbitmq_1  | =INFO REPORT==== 8-Jun-2022::13:12:01 ===
+rabbitmq_1  | connection <0.888.0> (10.220.0.11:40104 -> 10.220.0.4:5672): user 'whiterabbit' authenticated and granted access to vhost '/'
+rabbitmq_1  | 
+rabbitmq_1  | =INFO REPORT==== 8-Jun-2022::13:12:01 ===
+rabbitmq_1  | accepting AMQP connection <0.899.0> (10.220.0.11:40106 -> 10.220.0.4:5672)
+rabbitmq_1  | 
+rabbitmq_1  | =INFO REPORT==== 8-Jun-2022::13:12:01 ===
+rabbitmq_1  | connection <0.899.0> (10.220.0.11:40106 -> 10.220.0.4:5672): user 'whiterabbit' authenticated and granted access to vhost '/'
+rabbitmq_1  | 
+rabbitmq_1  | =INFO REPORT==== 8-Jun-2022::13:12:01 ===
+rabbitmq_1  | accepting AMQP connection <0.906.0> (10.220.0.11:40108 -> 10.220.0.4:5672)
+rabbitmq_1  | 
+rabbitmq_1  | =INFO REPORT==== 8-Jun-2022::13:12:01 ===
+rabbitmq_1  | connection <0.906.0> (10.220.0.11:40108 -> 10.220.0.4:5672): user 'whiterabbit' authenticated and granted access to vhost '/'

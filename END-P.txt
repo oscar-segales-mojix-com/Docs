@@ -1,0 +1,4 @@
+Prefix:
+GET -> https://qa.vizix.io/statemachine-api-configuration/rest/configuration/settings
+WS:
+GET -> http://10.100.154.197:8081/readergateway/devices

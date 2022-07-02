@@ -1,0 +1,234 @@
+sudo nano /etc/resolv.conf
+nameserver 8.8.8.8
+
+------------------- ver actidad en la carpeta
+watch -n2 ls -la
+------------------
+
+iptables -I DOCKER-USER -d 192.168.254.1 -j DROP
+iptables -D DOCKER-USER -d 192.168.254.1 -j DROP
+
+bash install.sh -t RED -e DEV-04 -h FRA082-HUB01
+
+
+-------
+
+wget https://chanel:chanel@partners.vizix.io/file/install-gdc.sh
+bash install-gdc.sh -e RED-AT -t RED -h QAMOJIXOCR-HUB01
+
+bash install-pr383.sh -t RED -e DEV-04 -h FRA082-HUB02 -v true
+
+
+
+sed -i "s/blacklist uas//g" /etc/modprobe.d/blacklist.conf
+sed -i "s/blacklist usb_storage//g" /etc/modprobe.d/blacklist.conf
+
+
+
+
+
+curl -sX POST -H "Content-Type: application/json" -H "Authorization: Basic UkVEcm9vdDptMGoxeEluYyExYg==" https://partners.vizix.io/hub-api/rest/search/hub --data '{"tenant": "RED", "environment": "RED-AT", "deviceId": "QATEST-HUB02"}' | jq '.'
+
+fallocate -l 385G gentoo_root.img
+
+user: chanel
+password: GJzPkDCyZGqkjsIUKPXpuBRDbmFXFYQR
+
+
+images=($(docker images | awk -F' ' '{ print $3 }'))
+for image in "${images[@]}"; do
+  docker rmi "${image}" --force
+done;
+----------------***********
+docker stop $(docker ps -aq)
+docker rm $(docker ps -aq)
+systemctl restart docker 
+
+esperas 1 min
+
+docker network rm default_hub
+----------------***********
+
+
+images=($(docker images | awk -F' ' '{ print $3 }'))
+for image in "${images[@]}"; do
+  docker rmi "${image}" --force
+done;
+
+wget https://chanel:chanel@partners.vizix.io/file/install-dev.sh
+
+bash install-dev.sh -e PERF-T1 -h DC1TEST-HUB01
+bash install.sh -t BOND -e PRODUCTION -h DC1TEST-HUB01
+
+
+
+
+reader-gateway
+
+Nombre del file: 
+FRA082-HUB01.red.vizix.io.conf
+
+Comando:
+systemctl start openvpn-client@QAMOJIXOCR-HUB01.vpn.red-at.vizix.io
+
+
+K1Pyk1ZJRFqZckqQZYK
+1563972084
+9999999.88888.666
+
+Printing -> ok
+XPOINT -> 
+POE -> 
+POS ->
+
+curl -X GET 'https://red-at.vizix.io/statemachine-api-configuration/rest/configuration/locations?level=premise' -H 'Authorization: Basic 'Qk9ORHJvb3Q6bTBqMXhJbmMh'' | jq '.[] | select(.code=="QATEST")'| jq -r '.id'
+
+systemctl stop openvpn-client@DCTEST1-HUB01.vpn.mojixretail.io
+systemctl disable openvpn-client@DCTEST1-HUB01.vpn.mojixretail.io
+
+  systemctl start openvpn-client@MOJIX2-HUB01.vpn-perf-t1.vizix.cloud
+
+DC1TEST-HUB01.engineering.vpn.vizix.cloud
+
+
+Ver logs
+docker logs -f $(docker ps | grep "hub-de" | awk -F' ' '{ print $1 }')
+
+ufw enable ssh
+ufw disable 
+ufw enable
+ons ufw enable--- bloquear
+ufw disable --- desbloquar
+
+ZTE0RUWL9F02479
+
+bash install.sh -e STAGING -h QAMOJIX-HUB01
+bash install-dev.sh -e DEVELOPMENT -h QAMOJIX-HUB01
+
+PROD
+"appId": "dece73fb-dca5-4c44-9067-c55d27b1e4c3",
+"onesignal_auth": "YzBkODhlN2YtYzJmYy00ZmIyLThlZDctNzEzMjg5YTUzZmRm",
+
+REDOAT
+appID: 9cd9d2ec-dfbc-443d-9b14-71ae568b36a4
+onesignal_auth:  MmU5ZDJmZDItOTM4Ny00NGQ0LWExNTQtNDE4ODEzMTAzNDk2
+
+37e19c9d2223
+19768ee02f61
+docker exec -ti b6dcf6384220 bash -c './bin/kafka-console-consumer.sh --bootstrap-server kedge:9092 --topic ___v1___ss___inventory --from-beginning --property print.key=true --property print.timestamp=true'
+docker exec -ti b6dcf6384220 bash -c './bin/kafka-console-consumer.sh --bootstrap-server kedge:9092 --topic ___v1___ss___epcisMap --from-beginning --property print.key=true --property print.timestamp=true'
+docker exec -ti b6dcf6384220 bash -c './bin/kafka-console-consumer.sh --bootstrap-server kedge:9092 --topic ___v1___ss___settings --from-beginning --property print.key=true --property print.timestamp=true'
+docker exec -ti b6dcf6384220 bash -c './bin/kafka-console-consumer.sh --bootstrap-server kedge:9092 --topic ___v1___data0___RED___QAMOJIX___RAWEPCISEVENT --from-beginning --property print.key=true --property print.timestamp=true'
+docker exec -ti b6dcf6384220 bash -c './bin/kafka-console-consumer.sh --bootstrap-server kedge:9092 --topic ___v1___data0___rawevents___fittingroom --from-beginning --property print.key=true --property print.timestamp=true'
+docker exec -ti b6dcf6384220 bash -c './bin/kafka-console-consumer.sh --bootstrap-server kedge:9092 --topic ___v1___data0___RED___QAMOJIXHUBG___RAWEPCISEVENT --from-beginning --property print.key=true --property print.timestamp=true'
+
+wget https://chanel:chanel@partners.vizix.io/file/install.sh
+bash install.sh -e RED-AT -h QAMOJIX-HUB01
+
+
+systemctl stop openvpn-client@qamojix-hub01.dev.red.vizix.io
+systemctl disable openvpn-client@qamojix-hub01.dev.red.vizix.io
+
+wget https://chanel:chanel@partners.vizix.io/file/install-dev.sh
+bash install-dev.sh -t BOND -e PERF-T1 -h DC1TEST-HUB01
+
+wget https://chanel:chanel@partners.vizix.io/file/install-with-dca.sh 
+bash install-with-dca.sh -t BOND -e PERF-T1 -h DC1TEST-HUB01
+
+ps aux | grep openvpn
+1652122579127
+
+
+mojix_support / ballgrew
+power / power
+
+
+https://dp-red-preprod.shopcx.io/product-api/rest/products/03572600059780/picture
+16S-A01112Y01480-10601--UNI
+
+03572600059780
+
+
+Make sure that the data is being provided in the right format.
+vizix_kafka-http-connector.1.jd2znwbrcd1j@red-at | Caused by: org.json.JSONException: JSONObject["disposition"] not found.
+
+---- company prefix list en hub ::: verification_service.yaml
+
+**** ws://192.168.0.30:8080/hal-webservices/receiveread despues pasa a ws
+
+monitoring manda logs al reader-gateway
+
+_--------fittingRoom-----------
+kafka-edge.vizix.cloud:9293
+
+RED-AT - KAFKA_SERVERS=kafka-edge.vizix.io:9293
+
+
+----------See Version -------
+curl --location --request GET 'https://partners.vizix.io/hub-state-api/v1/rest/list/environment' \
+--header 'Cookie: JSESSIONID.704044c1=node016fpdt2me33rc15xezf1i5sw2116743.node0'
+
+
+      - KAFKA_PARAM_AUTO_CREATE_TOPICS_ENABLE=true   ------ kedge.yaml should be true
+
+
+DIsconnection
+--------------------
+RABBITMQ -> dead
+VIZIX_EDGE -> alive
+
+
+wget https://chanel:chanel@partners.vizix.io/file/install.sh
+bash install.sh -e PRODUCTION -h QAMOJIX-HUB01
+
+
+
+6909662710220173
+6909688924170123
+
+03572642954784
+30395CE401208D8000000A4A
+
+
+---------------
+03572647669546
+30395CE402ECFA80000000C5
+
+QAGDC200028 ok
+QAGDC200029 ok
+QAGDC200030 NOK
+
+
+https://tracker-retail.s3.amazonaws.com/ytem-2021/upload/simulatorPERN9999999_1631705366960.json?alt=media
+https://tracker-retail.s3.amazonaws.com/ytem-2021/upload/sim_1647284820462_1647284820462.json?alt=media
+https://tracker-retail.s3.amazonaws.com/ytem-2021/upload/simulatorStore102_1642193268444.json?alt=media
+https://tracker-retail.s3.amazonaws.com/ytem-2021/upload/CHIP-LOADTEST_1648138306883.json?alt=media
+https://tracker-retail.s3.amazonaws.com/ytem-2021/upload/encoded_from_gtins_1648240887701.json?alt=media CHIP
+
+
+CHIP https://tracker-retail.s3.amazonaws.com/ytem-2021/upload/CHIP_2testload_1648219959831.json?alt=media
+    pr-732
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ssh mojix_support@192.168.0.17
+password: ballgrew
+
+wget https://chanel:chanel@partners.vizix.io/file/install-3.5.0-latest.sh
+bash install-3.5.0-latest.sh -t RED -e RED-AT -h QAMOJIXOCR-HUB01
+
+
+30395CE402ECFA8000001A25

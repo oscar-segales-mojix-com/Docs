@@ -1,0 +1,199 @@
+Edge Configuration
+
+
+- Topics creation in qa.viyix.io   Jesus-> Created
+
+docker -ps
+- mojix/kafka:kafka-mirrormaker                      
+- mojix/riot-core-bridges:3367
+
+zookeeper
+
+
+connect:
+    hostname: connect
+    container_name: connect
+    image: mojix/connector:feature_http_connector
+    restart: always
+    ports:
+      - 8083:8083
+    depends_on:
+      - kafka
+    environment:
+      VIZIX_KAFKA_SERVERS: kafka:9092
+      VIZIX_GROUP_ID: 1
+
+**** 
+
+curl -X POST \
+  http://qa.vizix.io:8083/connectors/ \
+  -H 'Cache-Control: no-cache' \
+  -H 'Content-Type: application/json' \
+  -H 'Postman-Token: f6a4027c-72bf-4c66-8ed7-a1ee0ea1a8f2' \
+  -d '{
+  "name": "httpFixtures",
+  "config": {
+    "connector.class": "com.tierconnect.riot.bridges.connectors.http.HttpSourceConnector",
+    "tasks.max": 1,
+    "http.url": "https://qa.vizix.io/statemachine-api-configuration/rest/configuration/rules/hub/DEFAULT-HUB-NAME/fixtures",
+    "http.interval": 6000,
+    "http.header.authorization": "Basic cm9vdDpDb250cm9sMTIzIQ==",
+    "topic": "__v1__blablblabla",
+    "key.converter": "org.apache.kafka.connect.storage.StringConverter",
+    "value.converter": "org.apache.kafka.connect.storage.StringConverter"
+  }
+}
+'
+
+Docker yml
+
+image for para transformbridge, rulesprocesor and actionprocessor
+cambiar imagen a:
+imagen mojix/riot-core-bridges:terry_skinnycache2
+
+
+Vizix -> rules to create
+
+STOLEN-ALARM aciton:
+
+{
+    "method": "POST",
+    "protocol": "http",
+    "host": "10.100.0.139",
+    "port": 8081,
+    "path": "/readergateway/run/alarm/${thing.readerId}",
+    "headers": {},
+    "basicAuth": {},
+    "body": null
+}
+
+
+CLOUDINTEGRATION:
+
+condition:
+
+function condition(thingWrapper,things,messages,logger,cacheManagerUtil){
+  var thingTypeCode = thingWrapper.getThingType().getCode();
+  return thingTypeCode === '/RED/RAWEPCISEVENT';
+}
+
+action: -> HTTP Transaction
+
+{
+    "method": "POST",
+    "protocol": "https",
+    "host": "edge.vizix.io",
+    "port": 443,
+    "path": "/statemachine-epcis-events-input-rest/rest/events/publish/amqp/theftalert",
+    "headers": {
+        "Authorization": "Basic bW9qaXhfdGVzdDptMGoxeEluYyE=",
+        "Cache-Control": "no-cache",
+        "Content-Type": "application/json"
+    },
+    "body": "${escapeJson(thing.rawBody)}"
+}
+
+PREMISEINVENTORY:
+
+condition:
+
+function condition(thingWrapper,things,messages,logger,cacheManagerUtil){
+    var thingTypeCode = thingWrapper.getThingType().getCode();
+    return thingTypeCode === '/RED/ITEM' || thingTypeCode === 'ITEM';
+}
+
+JAVASCRIPT
+"#importStateStore RED___KINGSLANDING___inventory"
+
+var premise = thingWrapper.getUdf("Retail_Premise");
+
+if (premise === 'KINGSLANDING') {
+    //get should be dynamic
+    var ss = context.getStateStore("RED___KINGSLANDING___inventory");
+    var serialNumber = thingWrapper.getSerialNumber();    
+    
+    var value =  "{\"bizstep\": \"" + thingWrapper.getUdfAsObject("Retail_Bizstep").getUdf("Retail_URI").value + 
+    "\", \"disposition\": \"" + thingWrapper.getUdfAsObject("Retail_Disposition").getUdf("Retail_URI").value + 
+    "\", \"premise\": \"" + premise + "\"}";
+
+    ss.put(serialNumber, value);
+}
+
+
+mm-c2f:
+    image: mojix/kafka:kafka-mirrormaker
+    container_name: mm-c2f
+    hostname: mm-c2f
+    extra_hosts:
+      - "kafka:40.113.237.130"
+    #command: bin/kafka-mirror-maker.sh
+    command: bin/kafka-mirror-maker.sh --message.handler MojixMessageHandler --message.handler.args '___v1___ss___RED___KINGSLANDING,___v1___ss___inventory'
+    environment:
+      KAFKA_MM_WHITE_LIST: "___v1___cache.*|___v1___cc___request___.*|___v1___ss___.*"
+      KAFKA_MM_CONSUMER_GROUPID: mirror-maker-mojix-facility102
+      KAFKA_MM_CONSUMER_READ_FROM: earliest
+      KAFKA_MM_CONSUMER_SERVER: ${KAFKA_SERVER}
+      KAFKA_MM_PRODUCER_SERVER: kedge:909
+
+
+
+jar para mm-c2f:
+
+
+download copie to /data/ file then:
+
+sudo docker cp kafka-ws-connector-test-1.0-SNAPSHOT-jar-with-dependencies.jar connect:/kafka/libs
+
+copy:
+
+sudo docker cp kafka-mirrormaker-test-1.0-SNAPSHOT.jar mm-c2f:/kafka/libs    <---- have to be in /data
+
+
+
+root@DEFAULT-HUB-NAME:/data# docker logs -f mm_c2f
+docekr exec -ti  idContainer  bash
+
+
+
+
+curl --request POST \
+  --url https://edge.vizix.io/statemachine-epcis-events-input-rest/rest/events/publish/amqp \
+  --header 'Authorization: Basic UkVEcm9vdDpDb250cm9sMTIzIQ==' \
+  --header 'Content-Type: application/json' \
+  --header 'cache-control: no-cache' \
+  --data '{    "events": [        {            "type": "ObjectEvent",            "eventTime": "2019-05-07T15:56:54.106+0000",            "recordTime": "2019-05-07T15:56:54.106+0000",            "bizStep": "urn:epcglobal:cbv:bizstep:shipping",            "disposition": "urn:epcglobal:cbv:disp:in_transit",            "readPoint": "urn:econnectware:site:loc:tnt",            "bizLocation": "urn:cxi:site:loc:tnt",            "premise": "KINGSLANDING",            
+  "bizTransList": [             {"value":"abc"}             ],            "extension": {                "test":"abc"            },            
+  "epcList": [                {                    "epc": "urn:epc:id:sgtin:3663328.001667.371",                    "tid": null,                    "uid": "Data-UID",                    "cxid": "Data123456"                }            ],            "action": "OBSERVE"        }    ]}'
+
+
+
+
+Kafka
+
+___v1__data0____RED___POE-EDGE
+___v1__action___qa_vizix_io-443
+___v1__ss___inventory
+Crear topic -> ___v1__ss___itemStatus2
+Crear topic -> ___v1__ss___CXHubTransformConfig   ->> cambiar en partitions *** sellable_not_accessible ****
+
+
+
+^XA^PW700
+^BY2,2,100
+^FO70,150^BC^FD${hexa}^FS
+^XZ
+
+
+^XA
+^BY2,40,60
+^FO100,59
+^BC
+^FD${hexa}
+^FS
+^XZ
+
+3663328-0014671-3572602-0067611-0019585-0029440-0029442-0029821-0030506-0030672-0031006-0037824-0037882-0042207-0042714-0052864-0052883
+
+
+357260-357261-357262-357263-357264-357265-357266-357267-357268-357269-357270-8053672-8056597
+

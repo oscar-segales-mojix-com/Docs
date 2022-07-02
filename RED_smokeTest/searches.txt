@@ -1,0 +1,27 @@
+curl --location --request POST 'https://staging.red.vizix.io/supply-chain-api/rest/supply_chain/reference_lists/searches' \
+--header 'Accept: application/json' \
+--header 'Accept-Encoding: gzip, deflate' \
+--header 'Authorization: Basic dGVzdGVyOnRlc3Rpc2xpZmU=,Basic U0VTQU1Fcm9vdDpDb250cm9sMTIzIQ==' \
+--header 'Cache-Control: no-cache' \
+--header 'Connection: keep-alive' \
+--header 'Content-Type: application/json' \
+--header 'Origin: file://' \
+--header 'Postman-Token: d78b01a7-70ca-4c14-a809-8f0708f4a904,51937b89-1a2a-4620-9d64-1f162bb59329' \
+--header 'Sec-Fetch-Mode: cors' \
+--header 'User-Agent: Mozilla/5.0 (Linux; Android 6.0.1; SM-G800H Build/MMB29M; wv) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/76.0.3809.132 Mobile Safari/537.36' \
+--header 'cache-control: no-cache' \
+--data-raw '{
+    "order": {
+        "property": "creationTime",
+        "direction": "DESC"
+    },
+    "filters": [
+        {
+            "property": "transactionId",
+            "operator": "EQ",
+            "values": [
+                "ostest"
+            ]
+        }
+    ]
+}'

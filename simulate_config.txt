@@ -1,0 +1,12 @@
+urnVar=urn:epc:id:sgtin:0354645.076664.215425041990
+serverVar=celine.vizix.cloud
+portVar=18080
+userVar=CELINEroot
+passVar=m0j1xInc!
+premise1Var=DC-130
+premise2Var=DC-602
+tenantVar=CELINE
+prem1IDVar=2
+prem2IDVar=6
+XPOINT_id1Var=L7Xn9XNKxSRph12x5jY
+XPOINT_id2Var=E8NGl5zW6C3yfyjq4Zk

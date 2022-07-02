@@ -1,0 +1,18 @@
+1.- POS Mapping 
+/data/hub/tomcat/tagsys
+cat povIdMode..........json
+
+2.- /data/hub/tomcat/logs -> tail -f apl-configuration.log
+
+3.- Premise smoke test
+https://docs.google.com/presentation/d/1fodgFDJa05Ad8RK3Xp_cuxKnfeozDjUPbXYmPv17enE/edit?ts=5cc06225#slide=id.g51f5ed7e55_0_0
+
+4.- /home/hub2/ -> sudo openvpn --config xxx.ovpn &
+https://docs.google.com/spreadsheets/d/148TPBOmpo2RIl1m59bgX9QlBJ2lEGXvE9mGrVrr_2fo/edit?ts=5cc05d51#gid=0
+
+5.- notebooks 
+
+-> To generate json -> POS_generateJsonMappingFile.ipynb
+-> directHubApi.ipynb to copy JsonMappingFile
+
+

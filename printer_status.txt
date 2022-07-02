@@ -1,0 +1,8 @@
+Verify the job status: Transit
+Verify the job status: Waiting
+Verify the job status: Printing
+Verify the job status: Pause
+Verify the job status: Error
+Verify the job status: Complete
+Verify the job status: Partial
+Verify the job status: Unknown\

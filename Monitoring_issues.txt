@@ -1,0 +1,20 @@
+https://mojixinc.atlassian.net/browse/RPLAT-2554 -> Monitoring Dashboard> Overview > Panels don't displayed the correct data
+https://mojixinc.atlassian.net/browse/RPLAT-2553 -> Monitoring Dashboard> PN kibana dashboards don't display any result.
+https://mojixinc.atlassian.net/browse/RPLAT-2255 -> Monitoring Dashboard > Panels don't display any data
+https://mojixinc.atlassian.net/browse/RPLAT-1228 -> Monitoring Dashboard >Premise> Inventory runs normally after disabling the Power Nodes
+https://mojixinc.atlassian.net/browse/RPLAT-1210 -> Monitoring Dashboard >Store> A disassociated HS still remains in the store
+https://mojixinc.atlassian.net/browse/RPLAT-1188 -> Monitoring Dashboard > Store> "HS-PN System Status" indicator displays wrong status
+https://mojixinc.atlassian.net/browse/RPLAT-1185 -> Monitoring Dashboard > Store> Hub serve health indicator displays wrong status
+https://mojixinc.atlassian.net/browse/RPLAT-1128 -> Monitoring Dashboard >Store> Power Nodes> Floor map doesn't load
+https://mojixinc.atlassian.net/browse/RPLAT-1126 -> Monitoring Dashboard >Store> Power Nodes> Some data is missing in the table
+https://mojixinc.atlassian.net/browse/RPLAT-1124 -> Monitoring Dashboard >Store> Power Nodes> Kibana dashboard error
+https://mojixinc.atlassian.net/browse/RPLAT-1117 -> Monitoring Dashboard >Store> Hot Spots> Kibana dashboards
+https://mojixinc.atlassian.net/browse/RPLAT-1115 -> Monitoring Dashboard >Store> Hot Spots> Floor map doesn't load
+https://mojixinc.atlassian.net/browse/RPLAT-1108 -> Monitoring Dashboard >Store> Hot Spots> Some data is missing (Table)
+https://mojixinc.atlassian.net/browse/RPLAT-1105 -> Monitoring Dashboard >Store> HS-PN> Kibana dashboard error
+https://mojixinc.atlassian.net/browse/RPLAT-1090 -> Monitoring Dashboard >Store> No data about PN Battery status
+https://mojixinc.atlassian.net/browse/RPLAT-1089 -> Monitoring Dashboard >Store> No data about HS and PN is shown in "HS-PN System Status" panel
+https://mojixinc.atlassian.net/browse/RPLAT-1085 -> Monitoring Dashboard> Store> There are no buttons in Hub server/APIs/Application health panels
+https://mojixinc.atlassian.net/browse/RPLAT-1083 -> Monitoring Dashboard> Support page> "Main servers metrics" table is displayed
+https://mojixinc.atlassian.net/browse/RPLAT-1082 -> Monitoring Dashboard>Main Page> No map is displayed.
+

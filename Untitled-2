@@ -1,0 +1,19 @@
+POST product-api/rest/products [“sku123”,”sku456”,”sku678”]
+
+
+"colorLabel": "CL-7613268000021",
+     "bundleItemQuantity": 1,
+     "prices": [],
+     “gtins”: [
+	{“gtin”: “gtinA”,
+	“updateTime”: "2018-09-25T11:29:05Z", 
+                "colorCode": "CC-7613268000021",
+"extensions": {},
+},
+{“gtin”: “gtinB”,
+	“updateTime”: "2018-07-25T11:29:05Z", 
+                "colorCode": "CC-7613268000087",
+"extensions": {},
+}
+       ]
+   }

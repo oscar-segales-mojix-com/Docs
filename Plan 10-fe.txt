@@ -1,0 +1,51 @@
+PE-> probar emails de 
+PERN 6.72.7 -> E2E
+
+
+CENTAURO en la tarde
+- Preguntar si ya esta el env.
+- crear premise Centauro
+- comparar con produccion
+- validar secuencias de creacion Mongo
+- Ejecutar E2E
+
+
+
+Miercoles 12
+dev.red.vizix.io
+Prod -> RED 6:15 am - 7:45 am 
+- Map pic updated ok  
+- Premise Confi -> Crear Premise -> ok
+- Mapa - Zona nombre -> ok
+- GEt POE online - offline - OK
+- Monitoring MSG ok warn nok -> ok
+- Event generator -> EPCISevents (ASC) antiguos nuevos eventos - ok
+- Crear Reflist ->Delete ->[reporte] content -> no info del Reflist -> ok
+- Borrar Premise
+- Crear zona -> update zona - ok
+
+
+Hi Fabien, according to the inconsistencies of the text message "ok" and the color red, front-end team is working on that. The bug was reported. Regarding to the reason of color red, it depens on the criticity value that hub send. 
+Criticity = 0  
+msg="OK"
+
+Criticity = 4  
+msg="WARN"
+
+Criticity = 8  
+msg="NOK"
+
+
+
+Lunes 9 March
+https://staging.red.vizix.io
+- Map pic updated -> 
+- Premise Confi -> Crear Premise -> 
+- Mapa - Zona nombre -> 
+- Crear zona -> update zona -> 
+- Crear Reflist ->Delete ->[reporte] content -> no info del Reflist -> 
+- GEt POE online - offline -> 
+- Monitoring MSG ok warn nok -> ok
+- Event generator -> EPCISevents (ASC) antiguos nuevos eventos -> ok
+- EXTRA- change POE config (fixture)
+- Borrar Premise -> 

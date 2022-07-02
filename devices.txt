@@ -1,0 +1,92 @@
+KEON
+
+AdvanPay
+-> http://10.100.0.195:3161/main.html
+-> http://10.100.0.92:3161/main.html
+
+AdvanGuard
+-> http://10.100.1.161:3161/main.html
+-> http://10.100.0.177:3161/main.html
+
+Impinj
+http://10.100.1.27/cgi-bin/index.cgi
+
+
+Printer
+-> 10.100.0.240
+
+
+BD MYSQL
+
+23.96.86.84
+wildfowl_crib_sidearm
+
+Mysql SCX Credentials:
+
+k8s-centralus-engineering.vizix.cloud:3316
+pass: wildfowl_crib_sidearm
+
+
+Virutales PROXMOX -> 
+https://10.100.154.5:8006
+user: uservm1
+password: c0d3r0ad
+
+
+
+https://proxmox9.tierconnect.com:8006/#v1:0:18:4::::::
+osegales
+oSr.s3@L.
+NADA -- (hub37 - hub39)
+
+qa-02.vizix.cloud/flow
+root
+m0j1xIncAdmin
+
+flow
+control123!
+
+
+1.- install kubectl
+2.- descomprmir file
+
+
+sudo docker-compose –f vizix-edge.yaml up –d edge-tools-on-prem
+
+docker exec -ti kedge bash -c './bin/kafka-console-consumer.sh --bootstrap-server kafka:9092 --topic ___v1___ss___RED______inventory --from-beginning --property print.key=true'
+
+
+transformbridge
+rulesprocessor
+connect
+ docker login -u mojixpull -p AL2DR8en7PvLDZXFQipcLQQY
+ docker login -u mojixpull -p AL2DR8en7PvLDZXFQipcLQQY
+
+
+
+sudo docker cp edge-kafka-topics2.sh kedge:/kafka/bin/edge-kafka-topics-win2.sh
+
+sudo docker exec -ti kedge sh -c "sed -e \"s/\r//g\" /kafka/bin/edge-kafka-topics-win2.sh > /kafka/bin/edge-kafka-topics2.sh"
+
+sudo docker exec -ti kedge chmod a+x /kafka/bin/edge-kafka-topics2.sh
+
+
+sudo docker exec -ti kedge /kafka/bin/edge-kafka-topics2.sh
+
+
+sudo docker stop rulesprocessor & sudo docker rm -f rulesprocessor 
+sudo docker stop transformbridge & sudo docker rm -f transformbridge 
+sudo docker stop mm-c2f & sudo docker rm -f mm-c2f 
+
+printing -> 
+printing-api
+rabitmq shabel mq
+cxi-hub
+Kafka 
+transformbridge
+rulesprocesor
+hbridge
+
+
+proxi -> internaltransformer.... hardcode para un tenant.
+

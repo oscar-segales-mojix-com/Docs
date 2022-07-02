@@ -1,0 +1,122 @@
+apiVersion: batch/v1
+kind: Job
+metadata:
+	namespace: qa-02-vizix-cloud
+	name: tools
+spec:
+	template:
+		metadata:
+			namespace: qa-02-vizix-cloud
+			labels:
+				app: tools
+		spec:
+			containers:
+			- name: tools
+				args: ["configure"]
+				image: mojix/vizix-tools:v6.64.0
+				env:
+					- name: VIZIX_REPORTGENERATOR_RUN_MIGRATION #para regenerar cubos false no, true si
+						value: "false"
+					- name: VIZIX_SYSCONFIG #<solo sysconfig> true para sysconfig incremental de ejem 6.40 - 6.60 
+						value: "true"
+					- name: VIZIX_SYSCONFIG_OPTION #fijo
+						value: "retail-core-epcis"
+					- name: VIZIX_SYSCONFIG_TENANT_CODE # No cambiar... 
+						value: "OST"
+					- name: VIZIX_SYSCONFIG_TENANT_NAME
+						value: "OST"
+					- name: VIZIX_SYSCONFIG_CREATE_TENANT # para crear true
+						value: "true"
+					- name: VIZIX_SYSCONFIG_CREATE_THINGS # para THing conf
+						value: "true"
+					- name: VIZIX_SYSCONFIG_HIERARCHY # nombre TEn
+						value: ">OST"
+					- name: VIZIX_SYSCONFIG_CLEAN # true drop todo DB ENV 
+						value: "false"  #</sysconfig>
+					- name: VIZIX_KAFKA_SERVERS # depende si hay un cluster
+						value: "kafka:9092"
+					- name: VIZIX_KAFKA_ZOOKEEPER #
+						value: "zookeeper:2181"
+					- name: VIZIX_KAFKA_DATA_PARTITIONS # particiones de kafka por topic
+						value: "6"
+					- name: VIZIX_KAFKA_CREATE_TOPICS # true when nuevo ENV only
+						value: "false"
+					- name: VIZIX_KAFKA_LOAD_CACHE  # true allways
+						value: "true"
+					- name: VIZIX_KAFKA_DATA_RETENTION_UPDATER # 
+						value: "false"
+					- name: VIZIX_SITE_CONFIG # like VIZIX_KAFKA_LOAD_CACHE, true
+						value: "true"
+					- name: VIZIX_KAFKA_DESCRIBE_TOPICS # false
+						value: "false"
+					- name: VIZIX_KAFKA_DATA_RETENTION_BYTES #  like VIZIX_KAFKA_DATA_PARTITIONS
+						value: "5368709120"
+					- name: VIZIX_KAFKA_DATA_RETENTION_HOURS # by time
+						value: "12"
+					- name: VIZIX_KAFKA_DATA_REPLICA_FACTOR # configurable
+						value: "1"
+					## Mongo stuff
+					- name: VIZIX_MONGO_PRIMARY
+						valueFrom:
+							configMapKeyRef:
+								name: infrastructure-config
+								key: mongo.primary
+					- name: VIZIX_MONGO_AUTHDB
+						value: "admin"
+					- name: VIZIX_MONGO_DB # DEVOPS
+						value: "viz_root"
+					- name: VIZIX_MONGO_USERNAME # DEVOPS
+						value: "admin"
+					- name: VIZIX_MONGO_PASSWORD # DEVOPS
+						valueFrom:
+							secretKeyRef:
+								name: vizix-secrets
+								key: mongo-password
+					- name: VIZIX_MQTT_HOST
+						value: "mqtt"
+					- name: VIZIX_MQTT_PORT # DEVOPS
+						value: "1883"
+					- name: VIZIX_DB_DRIVER # DEVOPS
+						value: "com.mysql.jdbc.Driver"
+					- name: VIZIX_DB_DIALECT # DEVOPS
+						value: "org.hibernate.dialect.MySQLDialect"
+					- name: VIZIX_DB_DATABASE # DEVOPS
+						value: "riot_main"
+					- name: VIZIX_DB_PASSWORD # DEVOPS
+						valueFrom:
+							secretKeyRef:
+								name: vizix-secrets
+								key: mysql-password
+					- name: VIZIX_AUTHENTICATION_MODE # DEVOPS
+						value: "nativeAuthentication"
+					- name: VIZIX_CONNECTION_URL # DEVOPS
+						value: "jdbc:mysql://mysql:3306/riot_main?useSSL=false"
+					- name: VIZIX_API_PORT # DEVOPS
+						value: "8080"
+					- name: VIZIX_API_HOST # DEVOPS
+						value: "services"
+					- name: VIZIX_API_KEY # DEVOPS
+						value: "7B4BCCDC"
+					- name: VIZIX_API_PATH # DEVOPS
+						value: "/riot-core-services"
+					- name: VIZIX_HAZELCAST_DISTRIBUTED_ENABLE # DEVOPS false
+						value: "false"
+				volumeMounts:
+					- mountPath: /data/sysconfig
+						name: sysconfig-disk-qa-02
+					- mountPath: /data
+						name: services-disk-qa-02
+			hostname: tools
+			restartPolicy: Never
+			volumes:
+			- name: sysconfig-disk-qa-02
+				persistentVolumeClaim:
+					claimName: sysconfig-disk-qa-02
+			- name: services-disk-qa-02
+				persistentVolumeClaim:
+					claimName: services-disk-qa-02
+			imagePullSecrets:
+				- name: mojix-registry
+	backoffLimit: 2
+
+

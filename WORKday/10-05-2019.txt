@@ -1,0 +1,24 @@
+EDGE
+https://docs.google.com/document/d/1AO_0c2Z9QN5shyTHrdpcLrqAUJ0dhez5TGYmB8VKYYU/edit?ts=5ccc2c58
+
+edit .yml 
+Change .sh zooker ipaddress 
+copy .sh (3) to a new directory, then give them priviligies 
+cd ..
+./<dir>/create-cache-topics.sh
+./<dir>/create-the-sevent-topics.sh
+./<dir>/create-poe-specific-topics.sh
+
+***DIRECTORY ERROR*** -> find KAFKA
+
+APL -> logica del hub
+hal-> propio del dispositivo 
+
+WEBSOCKET
+
+Install Simple WebSocket Client
+ws://10.100.154.197:8081/readergateway/receivetags/3333333.55555.111
+ws://10.100.154.197:8081/readergateway/receivetags/2020202.20202.202
+
+ROOT USER
+jic. si el ambiente ya es multitenant el user root no tiene acceso a la db del tenant y  collections de things (locations) atravez de los endpoint de shopcx, pero un usuario de tenant si tiene permisos a la db del tenant

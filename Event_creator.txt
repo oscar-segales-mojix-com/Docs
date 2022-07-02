@@ -1,0 +1,21 @@
+ExTrans->hbridge->RuPro ... Mongo
+<1MB kafka max size
+
+Nuevo flujo
+
+EPCIS-AMQP > ExTr -> RaMQ > EventCreator > ComMessage (lo divide) > al topico ___data_ecents (lo divide para que kafka lo procese > Deserialize > ItemStatus *ItemLifeCycle > Check status si va a *EPCIS, ITEM o ambos (envia a los topicos ___data_events_rp, ___data_items_rp, ___data_events_error )
+
+EventCreator -> rp_cache
+			 -> Cache_service >tiene> Cache_service_client->Ignite
+			 		^									  ->CB-caBase
+			 											  ->HZ-Hez
+
+
+*Flag true or false FinalStatus as a reference. 
+
+#Diable rules:
+EPCISTransForm
+ItemFinalStatus
+LastUPdate
+TurnOff-> EventGenerator
+#Take a look Extension could affect. 

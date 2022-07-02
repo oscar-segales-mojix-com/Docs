@@ -1,0 +1,4 @@
+RUN HDT ok
+EDGE config ok
+apl-configuration logs ok
+Upload ZPL file 

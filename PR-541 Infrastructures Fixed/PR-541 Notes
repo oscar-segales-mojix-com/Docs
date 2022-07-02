@@ -1,0 +1,65 @@
+wget https://chanel:chanel@partners.vizix.io/file/install-with-dca.sh
+bash install-with-dca.sh -t QAIKEA2 -e PERF-T1 -h MOJIX2-HUB01
+
+----------------***********
+docker stop $(docker ps -aq)
+docker rm $(docker ps -aq)
+systemctl restart docker 
+
+VER LOCATIONS del HUB
+docker exec -ti 3ed7a6b1fc00 bash -c './bin/kafka-console-consumer.sh --bootstrap-server kedge:9092 --topic QAIKEA2___cache___location --from-beginning --property print.key=true --property print.timestamp=true'
+VER LECTURAS
+docker exec -ti 3ed7a6b1fc00 bash -c './bin/kafka-console-consumer.sh --bootstrap-server kedge:9092 --topic QAIKEA2___iot___events --from-beginning --property print.key=true --property print.timestamp=true'
+
+
+curl 'https://www.vizix.cloud/epcis-core/rest/events/searches/' \
+  -H 'authority: www.vizix.cloud' \
+  -H 'sec-ch-ua: " Not;A Brand";v="99", "Google Chrome";v="91", "Chromium";v="91"' \
+  -H 'accept: application/json, text/plain, */*' \
+  -H 'clientid: 195520619' \
+  -H 'sec-ch-ua-mobile: ?0' \
+  -H 'user-agent: Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.114 Safari/537.36' \
+  -H 'token: b22966f2e59277c61e479d80cd7ced14966f7121fa1d8f7bfde7ffe778a9a7e3' \
+  -H 'content-type: application/json' \
+  -H 'origin: https://qaikea2.vizix.cloud' \
+  -H 'sec-fetch-site: same-site' \
+  -H 'sec-fetch-mode: cors' \
+  -H 'sec-fetch-dest: empty' \
+  -H 'referer: https://qaikea2.vizix.cloud/' \
+  -H 'accept-language: es,en-US;q=0.9,en;q=0.8,es-419;q=0.7' \
+  --data-raw '{"filters":[{"property":"type","operator":"EQ","values":["ObjectEvent"]},{"property":"epcList.epc","operator":"EQ","values":["urn:epc:id:grai:0193145.64307.0000000643"]}],"order":{"property":"eventTime","direction":"DESC"},"pagination":{"documents":20,"page":0}}' \
+  --compressed
+
+33140BC9FC49F440001FC744
+urn:epc:id:grai:0193151.75729.2082628
+GTIN: 00193151757296
+SKU: 942777052052
+
+37140BC9E43ECCD83060C183060D9A33000000000000
+urn:epc:id:grai:0193145.64307.0000000643
+GTIN: 00193145643079
+SKU: 939331320399
+
+"epc": "urn:epc:id:sgtin:0193145.064307.2",
+"hexa": "30340BC9E43ECCC000000002"
+
+"epc": "urn:epc:id:giai:0009120.1425860",
+"gtin": "99999999999997",
+"sku": "99999999999997",
+"hexa": "3414008E800000000015C1C4"
+
+--------------------------------ADB logs
+./logcat-app -p com.mojix.ytem -c
+apt-get install adb
+check---> adb devices
+./logcat-app -p com.mojix.ytem -c
+
+------------------------------------- New components
+monitoring-api-dca
+device-control-api
+configuration-api-dca
+impinj-connector
+
+
+3414008E800000000015C1C4
+C414008E800000000015C1C4

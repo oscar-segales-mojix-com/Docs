@@ -1,0 +1,44 @@
+
+lunes estatus monitoring dash
+api gate-way ticket 18/19 Back office
+
+
+
+edge instalacion 
+vizix upgrade
+
+apl-configuration   -> INFO messages
+
+Printer
+ coordinar con victor ramos DEV
+ POS -> mapping
+ Printer -> template.zpl
+ 
+hub 35 -> v3.3.5s
+---------§-----------
+
+EDGE
+
+Guia to install EDGE
+https://mojixinc.atlassian.net/wiki/spaces/VIZIX/pages/835944508/ViZix+Anti-Theft+Installation
+
+in vizix-edge.yaml --> change KAFKA_PARAM_LISTENERS & KAFKA_PARAM_ADVERTISED_LISTENERS
+
+kedge:
+    image: mojix/kafka:v2.2.1
+    container_name: kedge
+    hostname: kedge
+    restart: always
+    environment:
+      KAFKA_MAX_MEMORY: 2g
+      KAFKA_MIN_MEMORY: 1g
+      KAFKA_PARAM_BROKER_ID: 1
+      KAFKA_PARAM_AUTO_CREATE_TOPICS_ENABLE: "true"
+      KAFKA_PARAM_LISTENERS: PLAINTEXT://:9093
+      KAFKA_PARAM_ADVERTISED_LISTENERS: PLAINTEXT://10.100.153.242:9093
+      KAFKA_PARAM_OFFSETS_RETENTION_MINUTES: '10080'
+      KAFKA_PARAM_ZOOKEEPER_CONNECT: zookeeper:2181
+      KAFKA_PARAM_LOG_RETENTION_HOURS: 12
+      KAFKA_PARAM_LOG_RETENTION_BYTES: 1073741824
+
+

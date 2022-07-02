@@ -1,0 +1,60 @@
+docker ps -> hub34@10.100.154.196 compared it against hub2@10.100.0.178
+
+-RED Phase 7 - Test Plan
+
+https://docs.google.com/spreadsheets/d/1KYvNmm09ZLjMk9RTAyDL-Q0jGWoKy9h-8n4Od9VS-hA/edit?ts=5cc06b8d#gid=1997497829
+
+-For printing
+PostMan -> get https://staging.red.vizix.io/statemachine-api-configuration/rest/configuration/settings
+
+"global.company.prefix.list": "357260-357261-357262-357263-357264-357265-357266-357267-357268-357269-357270-8053672-8056597",
+
+-Go to THNGS-> Products -> search by prefix and get some products (2 single or 1 mates)
+
+POS = cuadrado blanco
+POE = cuadrado plano
+POV = point of view -> antenas (starflex/impinj)
+
+-Update notebooks to dp-notebooks (last one)
+-Create a POE  -> notebooks (anaconda) -> qa.vizix.io Royale
+logs -> hal-keon.log 
+****An error is displayed 
+****hub should recognize and start POE automatically
+, but it doesn't only manual start is allowed
+
+-Manual start -> go to keon of POE and start
+
+logs -> hal-keon.log -> activity
+logs -> hal-multidevices.log -> tags read 
+
+-ViZix SCX POE Specifications
+
+https://docs.google.com/presentation/d/1mogTol_nXmIz9GR-P-SWBSnikEOs3nRTib-jn-lUb8Q/edit#slide=id.g57b8b74866_6_28
+
+open-> HUB_WebSocket_UglySchema.pptx
+
+
+
+disco 70 G
+memoria 20 G
+
+una vez creado entrar a la nueva virtual
+crear otro dsco de 70
+otro network
+disable CD/DVD -> para que no intente bootear
+-> entrar a la virtual -> cambiar el nombre -> cambiar los IPs 10.100.154.0/24
+-> restart
+
+
+apl-webservices -> cuando el mapeo no esta bien
+hal-webservives -> cuando os dispositivos andan mal -> tiene todos los drivers
+
+
+
+
+
+
+
+
+
+

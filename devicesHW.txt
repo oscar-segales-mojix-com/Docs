@@ -1,0 +1,5 @@
+AdvanPay-m1-us-110	0C:AE:7D:0C:DB:96
+MojixPrinter	00:07:4D:4B:C0:AF	
+SpeedwayR-11-0E-83	00:16:25:11:0E:83
+QAMOJIXOCR-HUB01	08:62:66:4B:B9:FF
+AdvanGuard-100 98:5d:ad:2e:ed:37

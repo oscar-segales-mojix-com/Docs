@@ -1,0 +1,29 @@
+Multitenant BOND CENT RED RCHL
+
+-------Credentials-----
+MYSQL
+
+user/pass: root / wildfowl_crib_sidearm
+url: 199.223.232.82:3306
+
+MONGO
+
+url: 199.223.232.82:27017
+mongo -u admin -p control123! --authenticationDatabase admin
+
+ISSUES
+
+icons-> minion -> Rodri (restart minion)
+Create new premise -> Externaltransformer & sevices -> Julio
+Verificar si fue importado, al importarlo peude que se cambio los component ids de los tenant, component id tiene que matvchear con el group_Id.
+Revisar.-Component ID de cada tenant
+Location > componentID = groupId(DB) --- Wathc externaltransformer and services (logs)
+
+CENT was 2, should 137
+BOND was 38, should 64
+RED was 2 should 2 ok
+RUBA was 2 should 76
+PE was 3 should 123
+RCHLO was 338 should 338 ok
+
+

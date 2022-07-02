@@ -1,0 +1,10 @@
+BOND:
+HUB 4.0.7 
+EDGE 6.72.17
+Vizix 6.72.17
+
+BOND-PERFT1
+HUB 4.0.7 
+EDGE 6.72.17
+Vizix 7.8
+Probando con 7.8 en cloud

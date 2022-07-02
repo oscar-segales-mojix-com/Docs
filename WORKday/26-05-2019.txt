@@ -1,0 +1,62 @@
+dclog actionprocessor transformbridge rulesprocessor
+
+docker logs -f actionprocessor transformbridge rulesprocessor
+
+ws://10.100.154.197:8081/readergateway/receivetags/6X3OAg8j8iAcj5PDO
+
+ws://10.100.154.197:8081/readergateway/receivetags/GUARD
+
+ws://10.100.154.241:8081/readergateway/receivetags/POS_RETURN
+ws://10.100.154.241:8081/readergateway/receivetags/POS_READ_ONLY
+ws://10.100.154.241:8081/readergateway/receivetags/POS_PAYMENT
+
+
+DB ->configuration 
+	tabla -> device 
+	tabla- POV
+	povinfrasettings -> configuracion de las antenas
+
+	PoV -> antenas del inpinch
+
+1.- crear 
+2.- verificar en BD
+3.- GET
+
+MYSQL
+
+23.96.86.84
+wildfowl_crib_sidearm
+
+
+sudo openvpn --config asdasds.ovpn &
+
+
+http://10.100.154.197:7083/connectors
+to DEL http://10.100.154.197:7083/connectors/wsPOS
+to PUT http://10.100.154.197:7083/connectors/
+	{
+    "name": "wsPOS_READ_ONLY",
+    "config": {
+        "connector.class": "com.tierconnect.riot.bridges.connectors.ws.WsSourceConnector",
+        "buffer.chunk.maxsize": "20",
+        "tasks.max": "1",
+        "ws.url": "ws://10.100.154.197:8081/readergateway/receivetags/POS_READ_ONLY",
+        "name": "wsPOS_READ_ONLY",
+        "topic": "___v1___data0___RED___POE-EDGE",
+        "buffer.timeout": "10",
+        "value.converter": "org.apache.kafka.connect.storage.StringConverter",
+        "key.converter": "org.apache.kafka.connect.storage.StringConverter"
+    },
+    "tasks": [
+        {
+            "connector": "wsPOS_READ_ONLY",
+            "task": 0
+        }
+    ],
+    "type": "source"
+	}
+
+
+
+
+

@@ -1,0 +1,38 @@
+[
+    {
+        "assets": [
+            "FRA082_POS01_1:POS_PAYMENT"
+        ],
+        "header": {
+            "bizStep": "urn:epcglobal:cbv:bizstep:retail_selling",
+            "disposition": "urn:epcglobal:cbv:disp:retail_sold",
+            "eventTime": 1551460417864,
+            "action": "OBSERVE",
+            "bizLocation": "urn:epc:id:sgln:3333333.55555.111"
+        }
+    },
+    {
+        "assets": [
+            "FRA082_POS01_1:POS_RETURN"
+        ],
+        "header": {
+            "bizStep": "urn:epcglobal:cbv:bizstep:shipping",
+            "disposition": "urn:epcglobal:cbv:disp:in_transit",
+            "eventTime": 1551460417864,
+            "action": "OBSERVE",
+            "bizLocation": "FRA082"
+        }
+    },
+    {
+        "assets": [
+            "FRA082_POS01_1:POS_READ_ONLY"
+        ],
+        "header": {
+            "bizStep": "urn:epcglobal:cbv:bizstep:cycle_counting",
+            "disposition": "urn:epcglobal:cbv:disp:sellable_not_accessible",
+            "eventTime": 1551460417864,
+            "action": "OBSERVE",
+            "bizLocation": "urn:epc:id:sgln:3333333.55555.111"
+        }
+    }
+]

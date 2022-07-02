@@ -1,0 +1,21 @@
+{
+    "smtp": {
+        "host": "Smtp.gmail.com",
+        "port": 587,
+        "user": "mojix.track.notifications@mojix.com",
+        "pass": "m0j1xIncAdmin!",
+        "from": "oscar.segales@mojix.com",
+        "tsl": true
+    },
+  "ftp": {
+    "host": "ops.mojix.io",
+    "user": "SCGFTP",
+    "pass": "timbre-austral-phone",
+    "port": 21,
+    "path": "/vizix/DEV03/vizix/CENTQA2",
+    "user_pass": "m0j1xInc!"
+
+  },
+    "analytics_public_url":"http://notebooks-dev-03.vizix.cloud"
+
+}

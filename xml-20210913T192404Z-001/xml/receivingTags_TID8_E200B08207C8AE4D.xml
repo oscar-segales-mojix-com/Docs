@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<tags>
+   <request id="QA_TID8" login="gromero" date="2020-12-16T18:12:00" />
+   <tracking>
+      <carrier>QA_TID8 Carrier</carrier>
+      <number>Carrier_TID8</number>
+   </tracking>
+   <containers>
+      <container sscc="035464527666080086_0008" tagEan="3546452766608">
+         <items>
+            <item taguid="" tagid="E200B08207C8AE4D" tagcxid="" />
+         </items>
+      </container>
+
+   </containers>
+</tags>

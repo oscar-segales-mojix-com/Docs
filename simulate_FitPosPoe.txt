@@ -1,0 +1,6 @@
+EPC=30395CE3C36AA00000001494
+Server=red-at.vizix.io
+user=REDroot
+pass=m0j1xInc!1b
+premise=QATEST
+tenant=RED

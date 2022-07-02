@@ -1,0 +1,64 @@
+GET -> http://10.100.154.196:7083/connectors/
+
+{
+  "name": "wsPOE",
+  "config": {
+    "connector.class": "com.tierconnect.riot.bridges.connectors.ws.WsSourceConnector",
+    "tasks.max": 1,
+    "ws.url": "ws://10.100.154.242:8081/readergateway/receivetags/GUARD",
+    "topic": "___v1___data0___RED___CHE041___RAWEPCISEVENT",
+    "buffer.chunk.maxsize": 20,
+    "buffer.timeout": 10,
+    "key.converter": "org.apache.kafka.connect.storage.StringConverter",
+    "value.converter": "org.apache.kafka.connect.storage.StringConverter"
+  }
+}
+
+
+
+{
+  "name": "wsPOS_PAYMENT",
+  "config": {
+    "connector.class": "com.tierconnect.riot.bridges.connectors.ws.WsSourceConnector",
+    "tasks.max": 1,
+    "ws.url": "ws://10.100.154.242:8081/readergateway/receivetags/POS_PAYMENT",
+    "topic": "___v1___data0___RED___CHE041___RAWEPCISEVENT",
+    "buffer.chunk.maxsize": 20,
+    "buffer.timeout": 10,
+    "key.converter": "org.apache.kafka.connect.storage.StringConverter",
+    "value.converter": "org.apache.kafka.connect.storage.StringConverter"
+  }
+}
+
+
+
+{
+  "name": "wsPOS_RETURN",
+  "config": {
+    "connector.class": "com.tierconnect.riot.bridges.connectors.ws.WsSourceConnector",
+    "tasks.max": 1,
+    "ws.url": "ws://10.100.154.242:8081/readergateway/receivetags/POS_RETURN",
+    "topic": "___v1___data0___RED___CHE041___RAWEPCISEVENT",
+    "buffer.chunk.maxsize": 20,
+    "buffer.timeout": 10,
+    "key.converter": "org.apache.kafka.connect.storage.StringConverter",
+    "value.converter": "org.apache.kafka.connect.storage.StringConverter"
+  }
+}
+
+
+
+
+{
+  "name": "wsPOS_READ_ONLY",
+  "config": {
+    "connector.class": "com.tierconnect.riot.bridges.connectors.ws.WsSourceConnector",
+    "tasks.max": 1,
+    "ws.url": "ws://10.100.154.242:8081/readergateway/receivetags/POS_READ_ONLY",
+    "topic": "___v1___data0___RED___CHE041___RAWEPCISEVENT",
+    "buffer.chunk.maxsize": 20,
+    "buffer.timeout": 10,
+    "key.converter": "org.apache.kafka.connect.storage.StringConverter",
+    "value.converter": "org.apache.kafka.connect.storage.StringConverter"
+  }
+}

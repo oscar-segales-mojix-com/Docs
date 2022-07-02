@@ -1,0 +1,2 @@
+root@mojix:/home/mojix# apt install zabbix-server-mysql zabbix-frontend-php
+root@mojix:/home/mojix# cd Cypress/

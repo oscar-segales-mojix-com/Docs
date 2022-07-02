@@ -1,0 +1,18 @@
+SOH stream
+Capa de Injestion
+
+Hbridge -> 
+
+FTPBridge -> httpbrifge -> 
+
+soh generator
+mqtt
+
+mongo_analytics
+
+Backend de analytics
+notebooks-api
+
+
+mongo 
+inicialization ejecutar el cron

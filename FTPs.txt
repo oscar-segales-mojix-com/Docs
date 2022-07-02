@@ -1,0 +1,25 @@
+FTP:
+AMRG: ftp://ops.mojix.io	amrgperft1	control123	21
+CENT: ftp://ops.mojix.io	SCGFTP	timbre-austral-phone	21
+PERN: ftp://ops.mojix.io	foodsafety	m0j1xInc!	21
+
+PERN: ftp://ops.mojix.io	foodsafety	autumn-cow-tic	21 
+
+
+AMRG: ftp://ops.mojix.io	amrgperft1	control123	21
+CENT: ftp://ops.mojix.io SCGFTP timbre-austral-phone 21
+PERN: ftp://ops.mojix.io  foodsafety  m0j1xInc!
+ZEBRA: 
+host: ops.mojix.io	
+user: SCGFTP
+pass: timbre-austral-phone
+
+BOBS: ftp://ops.mojix.io SCGFTP timbre-austral-phone 21
+DECO: ftp://ops.mojix.io SCGFTP timbre-austral-phone 21
+
+Mongo
+- Last value (DESC): db.getCollection('f6dacb6e72142f849d8cd9ddcbc2935b_things').find({}).sort({"locationIdSeq.value": -1})
+- thingSequences last value seq
+
+NOTE: Premise: null -> AMRG 
+centauro, bond y pern en ese ambiente tiene que tener valor Premise:

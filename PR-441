@@ -1,0 +1,175 @@
+PR-441
+An alert should appear and the expired items should be displayed. The items that were read should arrive in to the platform and an epcis event should arrive too with your items: (Review the example of the event)
+{
+"id": "ObjectEvent-1600718144689-bd248c7f8afdae7c941ebf355c4f626c-d41d8cd98f00b204e9800998ecf8427e",
+"type": "ObjectEvent",
+"eventTime": "2020-09-21T19:55:44.689+0000",
+"recordTime": "2020-09-21T19:55:44.689+0000",
+"bizStep": "urn:epcglobal:cbv:bizstep:cycle_counting",
+"disposition": "urn:epcglobal:cbv:disp:sellable_accessible",
+"readPoint": "9282139E-6782-4CBF-A3AE-FAA52C256096",
+"bizLocation": "urn:epc:id:sgln:9999999.00101.1",
+"premise": "9999999",
+"bizTransList": [
+{
+"value": "cycleCount_1600718134973",
+"type": ""
+}
+],
+"extension": {
+"___locationXYZ": "486.1;88.3;0.0",
+"___ViZix_Rule": "Rule CC to Sellable Accessible",
+"___tsEdgeIn": "1600718144689",
+"___zg": "{\"id\":983,\"name\":\"9999999 Area 1\",\"code\":\"9999999AREA1\",\"group\":{\"id\":192},\"time\":\"2020-09-18T13:48:01.485Z\",\"blinked\":true,\"modified\":false}",
+"___lastDetectTime": "1600718144689",
+"___sourceModule": "cycleCount",
+"___zm": "{\"id\":364,\"name\":\"9999999\",\"code\":\"9999999_FLOOR\",\"time\":\"2020-09-18T13:48:01.485Z\",\"blinked\":true,\"modified\":false,\"lonOrigin\":1.9775390625,\"latOrigin\":46.52863311767578,\"altOrigin\":0.0,\"declination\":0.0,\"imageWidth\":640.0,\"imageHeight\":336.0,\"xNominal\":0.0,\"yNominal\":0.0,\"latOriginNominal\":46.52863311767578,\"lonOriginNominal\":1.9775390625,\"imageUnit\":\"m\",\"lonmin\":1.9775390625,\"lonmax\":1.9858955810429477,\"latmin\":46.52863311767578,\"latmax\":46.53165145703042,\"modifiedTime\":1568767798659,\"group\":{\"id\":192,\"name\":\"Mojix\",\"code\":\"9999999\",\"parent\":{\"id\":186},\"groupType\":{\"id\":32},\"hierarchyName\":\">Centauro>Mojix\",\"hierarchyCode\":\">CENT>9999999\",\"hierarchyId\":\">186>192\",\"archived\":false,\"treeLevel\":3}}",
+"requestId": "",
+"___Retail_CycleCountDate": "1600718142005",
+"___lastLocateTime": "1600436881485",
+"___tsCoreIn": "1600718144949",
+"___zt": "{\"id\":451,\"name\":\"SalesFloor\",\"code\":\"SALESFLOOR\",\"group\":{\"id\":186},\"time\":\"2020-09-18T13:48:01.485Z\",\"blinked\":true,\"modified\":false}",
+"group": ">CENT",
+"___location": "1.9838863656272854;46.529426153654;0.0",
+"thingTypeCode": "ITEM",
+"___Retail_GS1Key": "00050609400190",
+"priority": "3",
+"___source": "MOBILE",
+"___deviceId": "9282139E-6782-4CBF-A3AE-FAA52C256096",
+"___user": "CENTroot",
+"___sessionId": "1600718134973",
+"___aliasMapped": "30340316C42714C0EE71A25E",
+"sourceModule": "cycleCount",
+"___batchSqn": "1"
+},
+"epcList": [
+{
+"epc": "urn:epc:id:sgtin:4060979.002228.220002520709",
+"gtin": "04060979022287"
+},
+{
+"epc": "urn:epc:id:sgtin:0050319.070002.4000424538",
+"gtin": "00050319700023"
+}
+],
+"ilmd": {
+"bestBeforeDate": null,
+"countryOfOrigin": null,
+"drainedWeight": {
+"measurement": null,
+"measurementUnitCode": null
+},
+"grossWeight": {
+"measurement": null,
+"measurementUnitCode": null
+},
+"harvestStartDate": null,
+"harvestEndDate": null,
+"itemExpirationDate": null,
+"firstFreezeDate": null,
+"netWeight": null,
+"lotNumber": null,
+"sellByDate": null,
+"packagingDate": null
+},
+"action": "ADD",
+"$$hashKey": "00A"
+}
+
+
+00643831000544 00643831000544
+10073420003606 10073420003606
+10073464012718 10073464012718
+10699980075145  10699980075145
+10814587015213 10814587015213
+
+epc": "urn:epc:id:sgtin:0023700.004759.12",
+"gtin": "00023700047595",
+"sku": "00023700047595",
+303401725004A5C00000000C
+
+"epc": "urn:epc:id:sgtin:0023700.004759.14",
+"gtin": "00023700047595",
+"sku": "00023700047595",
+303401725004A5C00000000E
+
+"epc": "urn:epc:id:sgtin:0023700.004759.15",
+"gtin": "00023700047595",
+"sku": "00023700047595",
+303401725004A5C00000000F
+
+"epc": "urn:epc:id:sgtin:0023700.004759.13",
+"gtin": "00023700047595",
+"sku": "00023700047595",
+303401725004A5C00000000D
+
+"bestBeforeDate": "2020-11-19",
+"lotNumber": "LT001-OS",
+
+--------------------------------------------------
+{
+"epc": "urn:epc:id:sgtin:0643831.000054.1",
+"gtin": "00643831000544",
+"sku": "00643831000544",
+3034274BDC000D8000000001
+
+"epc": "urn:epc:id:sgtin:0643831.000054.2",
+"gtin": "00643831000544",
+"sku": "00643831000544",
+3034274BDC000D8000000002
+
+"epc": "urn:epc:id:sgtin:0643831.000054.3",
+"gtin": "00643831000544",
+"sku": "00643831000544",
+3034274BDC000D8000000003
+
+"bestBeforeDate": "2020-11-19",
+"lotNumber": "LT002-OS",
+
+--------------------------------------------------
+
+"epc": "urn:epc:id:sgtin:0073420.100360.3",
+"gtin": "10073420003606",
+"sku": "10073420003606103890862234", 25
+3034047B3062020000000003
+
+"epc": "urn:epc:id:sgtin:0073420.100360.2",
+"gtin": "10073420003606",
+"sku": "10073420003606",
+3034047B3062020000000002
+
+"epc": "urn:epc:id:sgtin:0073420.100360.1",
+"gtin": "10073420003606",
+"sku": "10073420003606",
+3034047B3062020000000001
+
+"bestBeforeDate": "2020-11-19",
+"lotNumber": "LT003-OS",
+
+--------------------------------------------------
+
+"epc": "urn:epc:id:sgtin:0814587.101521.2",
+"gtin": "10814587015213",
+"sku": "10814587015213",
+303431B7EC63244000000002
+
+"epc": "urn:epc:id:sgtin:0814587.101521.1",
+"gtin": "10814587015213",
+"sku": "10814587015213",
+303431B7EC63244000000001
+
+"epc": "urn:epc:id:sgtin:0814587.101521.3",
+"gtin": "10814587015213",
+"sku": "10814587015213",
+303431B7EC63244000000003
+
+"itemExpirationDate": "2020-11-15",
+"lotNumber": "LT005-OS",
+
+
+
+
+
+00010006300028  1
+00092418900164  2
+00011144500035  3

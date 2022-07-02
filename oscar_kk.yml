@@ -1,0 +1,64 @@
+version: "2.4"
+
+services:
+
+  zoosecure:
+    image: ${ZOOKEEPER_IMAGE}
+    container_name: zoosecure
+    hostname: zoosecure
+    ports:
+      - 2182:2181
+    volumes:
+      - ./zoosecure/data:/data
+      - ./zoosecure/datalog:/datalog
+
+  ksecure:
+    image: ${KAFKA_IMAGE}
+    container_name: ksecure
+    hostname: ksecure
+    depends_on:
+      - zoosecure
+    environment:
+      KAFKA_PARAM_BROKER_ID: 1
+      KAFKA_PARAM_INTER_BROKER_LISTENER_NAME: "PLAINTEXT"
+      KAFKA_PARAM_ZOOKEEPER_CONNECT: zoosecure
+      KAFKA_PARAM_ZOOKEEPER_CONNETION_TIMEOUT_MS: 60000
+      KAFKA_PARAM_INITIAL_REBALANCE_DELAY_MS: 5000
+
+      KAFKA_PARAM_SSL_CLIENT_AUTH: required
+      KAFKA_PARAM_LISTENERS: "PLAINTEXT://:9092,SASL_SSL://:9192"
+      KAFKA_PARAM_ADVERTISED_LISTENERS: "PLAINTEXT://ksecure:9092,SASL_SSL://${HOST_IP}:9192"
+
+      KAFKA_PARAM_SSL_TRUSTSTORE_LOCATION: /var/ssl/private/kafka.truststore.jks
+      KAFKA_PARAM_SSL_TRUSTSTORE_PASSWORD: Control123!
+      KAFKA_PARAM_SSL_KEYSTORE_LOCATION: /var/ssl/private/kafka.keystore.jks
+      KAFKA_PARAM_SSL_KEYSTORE_PASSWORD: Control123!
+      KAFKA_PARAM_SSL_KEY_PASSWORD: Control123!
+      KAFKA_PARAM_SASL_ENABLED_MECHANISMS: PLAIN
+      KAFKA_OPTS: -Djava.security.auth.login.config=/etc/kafka/kafka_jaas.conf
+    volumes:
+      - ./ksecure/data:/data
+      - ./ksecure/kafka.truststore.jks:/var/ssl/private/kafka.truststore.jks:ro
+      - ./ksecure/kafka.keystore.jks:/var/ssl/private/kafka.keystore.jks:ro
+      - ./ksecure/kafka_jaas.conf:/etc/kafka/kafka_jaas.conf:ro
+    ports:
+      - 9192:9192
+
+  client:
+    image: gcr.io/mojix-registry/kafka-secure-client:master
+    environment:
+      - KAFKA_SERVERS=kafka-edge.vizix.cloud:9293
+      - KAFKA_TOPIC=___notifications___fittingrooms
+      - KAFKA_CONSUMER_GROUP=KafkaSecureClient_AQ
+      - KAFKA_SECURITY_PROTOCOL=SSL
+#      - SASL_ENABLED_MECHANISMS=PLAIN
+#      - SASL_JAAS_USER=farfetch
+#      - SASL_JAAS_PASSWORD=farfetch-secret
+      - SSL_TRUSTSTORE_LOCATION=/home/gradle/build/kafka.truststore.jks
+      - SSL_TRUSTSTORE_PASSWORD=control123!
+      - SSL_KEYSTORE_LOCATION=/home/gradle/build/kafka.keystore.jks
+      - SSL_KEYSTORE_PASSWORD=control123!
+      - SSL_KEY_PASSWORD=control123!
+    volumes:
+      - ./ksecure/kafka.truststore.jks:/home/gradle/build/kafka.truststore.jks:ro
+      - ./ksecure/kafka.keystore.jks:/home/gradle/build/kafka.keystore.jks:ro

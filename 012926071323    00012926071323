@@ -1,0 +1,103 @@
+012926071323    00012926071323
+
+303400C9F806F73000000B54
+303400C9F806F73000000B55
+
+012926071347    00012926071347
+
+303400C9F806F7B000000B56
+303400C9F806F7B000000B57
+
+012926065582    00012926065582
+
+303400C9F80667B000000B58
+303400C9F80667B000000B59
+
+
+    0$@rz3g.
+cusadmin   
+password
+
+edge-tools-on-prem
+mmbridge
+transformbridge
+mm-c2f
+rulesprocessor
+actionprocessor
+kafkaproxyclient
+
+sudo docker stop edge-tools-on-prem & sudo docker rm -f edge-tools-on-prem 
+sudo docker stop mmbridge & sudo docker rm -f mmbridge 
+sudo docker stop actionprocessor & sudo docker rm -f actionprocessor 
+sudo docker stop kafkaproxyclient & sudo docker rm -f kafkaproxyclient 
+
+docker stop mm-c2f & sudo docker rm -f mm-c2f 
+
+
+docker stop rulesprocessor & docker rm -f rulesprocessor 
+docker stop transformbridge & docker rm -f transformbridge 
+docker stop actionprocessor & docker rm -f actionprocessor 
+docker stop mm-c2f & docker rm -f mm-c2f 
+docker stop connect & docker rm -f connect 
+
+docker-compose -f vizix-edge.yaml up -d transformbridge
+docker-compose -f vizix-edge.yaml up -d rulesprocessor
+docker-compose -f vizix-edge.yaml up -d actionprocessor
+docker-compose -f vizix-edge.yaml up -d mm-c2f
+docker-compose -f vizix-edge.yaml up -d connect
+docker-compose -f vizix-edge.yaml up -d hbridge
+
+
+docker stop cxi-hub
+docker start cxi-hub
+
+
+sudo docker-compose -f vizix-edge.yaml up -d edge-tools-on-prem
+sudo docker-compose -f vizix-edge.yaml up -d mmbridge
+sudo docker-compose -f vizix-edge.yaml up -d mm-c2f
+sudo docker-compose -f vizix-edge.yaml up -d transformbridge
+sudo docker-compose -f vizix-edge.yaml up -d rulesprocessor
+sudo docker-compose -f vizix-edge.yaml up -d actionprocessor
+sudo docker-compose -f vizix-edge.yaml up -d kafkaproxyclient
+
+docker-compose -f docker-compose.yaml stop cxi-hub-metricbeat cxi-hub-heartbeat cxi-hub-packetbeat
+
+
+
+Fitting > Configuration Device > Is possible cancel the creation of Fitting device
+Fitting> Device Configuration>Verify to Create new fitting room in Device Configuration assigned to a fixture with fitting room mode with devices monitoring reporting offline and retrieve its fitting room information
+Fitting > Configuration Device > Is possible select and delete a fitting device using Delete button from page
+Fitting>Configuration Device> Verify that after migration the section of Fitting Room is added
+Fitting> Configuration Device > Verify that is possible to select a premise and according that is displayed the correct information
+Fittings>DeviceConfigurationDashboard>Verify that after delete a fixture that was configured the value of IsEnabled is in false
+Fitting > Configuration Device > Is possible filter the Fitting devices using the filter from page
+Fitting > Configuration Device > Is possible create a new Fitting device
+Fitting > Configuration Device > Is possible Add a new fitting device using Add button from page
+Fitting>Configuration Device> Verify that the following records are added in the tables devicetype,devicemodel,devicemode and infrasettings
+Fitting > Device Configuration > Verify to get information about a specific fitting room with devices monitoring reporting online
+Fitting> DeviceConfigurationDashboard> Verify that after disable the fitting mode in the fixture , the value of the device isEnabled is in false
+Fitting > Configuration Device > is possible delete a Fitting device already create
+Fitting > DeviceConfigurationDashboard> Verify that after enable the fixture mode the value of IsEnabled of the device is in true
+Fitting > Configuration Device > Is possible update a current Fitting device
+
+
+urn:epc:id:sgtin:35726000.06021.1001
+urn:epc:id:sgtin:35726000.06021.1002
+urn:epc:id:sgtin:35726000.06021.1003
+303110915805E140000003E9
+303110915805E140000003EA
+303110915805E140000003EB
+
+FITTING
+KAFKA
+1.- EPCISmaps -> "expirationThresholds" not 0 or null---- LOGS: container.labels.com_docker_swarm_service_name.keyword:"vizix_kafka-http-connector" up and running
+2.- Setting ->  company prefixes
+3.- Inventory
+4.- 
+
+08053672587494
+
+Zebra - storeWD01 / ZBRA1234! y storeCENTRAL / ZBRA1234! (los things de configuracion estan en el spred del continues delivery) - OSCAR
+KFC - storeY052049 /  m0j1xInc! (los things de configuracion estan en el spred del continues delivery) - Oscar
+
+

@@ -1,0 +1,9 @@
+dev-red
+- premise null -> Las cache del event-creator. El ignite debe estar empty. 
+- topic INV -> revisar GATEWAY - Bridges&Rules - Ruleset-CoreBridge
+- cron
+
+- GDC2- 
+Revisar - Attributos con crons
+Productos sin replication
+Pushgateway -> Attributo - {Region, Country}

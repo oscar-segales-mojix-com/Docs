@@ -1,0 +1,14 @@
+Daily Manual Metrics
+
+new prdduct :::: 008005100006
+
+Serializacion process
+
+curl --location --request GET 'https://www.mojixretail.io/serialization-api/rest/serialization/hexas/sgtin96/company_prefix/008005/100068?quantity=1000&bizLocation=urn:epc:id:sgln:9999999.00101.1' \
+--header 'Authorization: Basic Q0VOVHJvb3Q6bTBqMXhJbmMh'
+
+
+PackBlind,TransferBlind,ReceiveBlind
+
+Centauro_Store_9999999_29062022.csv IN
+Successfully sent business transaction to analytics. AND  INV20220629_9999999 AND CENT ANALYTICS

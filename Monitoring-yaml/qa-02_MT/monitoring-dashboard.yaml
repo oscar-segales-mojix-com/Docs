@@ -1,0 +1,56 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  namespace: qa-02-vizix-cloud
+  name: statemachine-api-dashboard-monitoring
+  labels:
+    mojix.service: statemachine-api-dashboard-monitoring
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      mojix.service: statemachine-api-dashboard-monitoring
+  template:
+    metadata:
+      creationTimestamp: null
+      labels:
+        mojix.service: statemachine-api-dashboard-monitoring
+    spec:
+      containers:
+      - name: statemachine-api-dashboard-monitoring
+        imagePullPolicy: "Always"
+        resources:
+          requests:
+            memory: 800Mi
+        image: mojix/statemachine-api-dashboard-monitoring:v6.51.2
+        env:
+        - name: DEV_CONFIGURATION_API_URL
+          value: "https://qa-02.vizix.cloud/"
+        - name: KIBANA_SERVER_URL
+          value: "https://qa-02-kibana.vizix.cloud/"
+        - name: MONITORING_API_URL
+          value: "https://qa-02.vizix.cloud/"
+        - name: MULTI_TENANT_ENABLED
+          value: "false"
+      imagePullSecrets:
+      - name: mojix-registry
+      hostname: statemachine-api-dashboard-monitoring
+      restartPolicy: Always
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  namespace: qa-02-vizix-cloud
+  labels:
+    mojix.service: statemachine-api-dashboard-monitoring
+  name: statemachine-api-dashboard-monitoring
+spec:
+  ports:
+  - name: "9001"
+    port: 9001
+    targetPort: 9001
+  selector:
+    mojix.service: statemachine-api-dashboard-monitoring
+status:
+  loadBalancer: {}

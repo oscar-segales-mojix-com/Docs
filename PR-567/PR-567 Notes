@@ -1,0 +1,656 @@
+/**
+ * Created by ssabat on 08-11-18.
+ */
+
+(function (){
+
+  var thing = thingWrapper; // Thing from DB
+  var thingType = thingWrapper.getThingType().getCode();
+  var thingMessage = thingWrapper.getThingMessage();
+  var thingTypeCode = thingMessage.getThingTypeCode();
+  var messageTimestamp = thingMessage.getTime();
+  var source = '';
+
+  var UDFS = {};
+  var thingGroup = thing.getGroup().getCode();
+  var jsRuleName = '<<<JSRULE - ' + thingGroup + '>>> '; // coder should change the value of this variable to match the JSRule name
+  var loggerModifier = jsRuleName + thingType + ' | '; // appends the thing type
+  var loggerModifierSN = loggerModifier + thing.getSerialNumber() + ' | '; // appends the thing serial
+  /** This variable controls the global logging, set to false when in PROD **/
+  var gLogState = false;
+
+// ********************************************************************************************************
+// RULE 
+// ********************************************************************************************************
+
+  if (source.match(/^ALE.*$/)) {
+    source = "ALEB";
+  }
+
+  var logHeader = 'FLAG EVENT RULE';
+  printLog(logHeader, "start");
+  //printLog('#####################################################################################################################################', "debug");
+  //printLog('############################' + thingTypeCode, "debug");
+  //if(thingTypeCode == 'VIZIXEVENT'){
+  printLog('Analytics - Trigger - ViZixEvent', "debug");
+  status = getUDFvalue('Event_Status');
+  eventCode = getUDFvalue('Event_Code');
+  printLog('CHECK status:' + status, "debug");
+  printLog('CHECK eventCode:' + eventCode, "debug");
+  if (eventCode == 404003) {  //Sync Event
+    printLog('CHECK CALLING HTTP:' + status, "debug")
+    ruleActionExecutor.callHttp("DISCREPANCYPROCESSPUBLISHER");
+    //ruleActionExecutor.callFlowHttp(491);
+    //} 
+  }
+
+  /*******************************
+   * Available Rule
+   *******************************/
+  printLog(logHeader, "end");
+
+// START OF FUNCTION LIBRARY
+// ********************************************************************************************************
+// ********************************************************************************************************
+// 1. printLog
+// 2. formatDate
+// 3. PropertySetter
+// 4. appendUDF
+// 5. parseToBoolean
+// 6. getUDFvalue
+// 7. GetZonePropertyValue
+// 8. GetThingByThingTypeCode
+// 9. copyRetailMetaData
+//10. copyRetailStoreAttributes
+//11. setFirstLastDetectSourceUDFs
+//12. setFirstDetectTimeBySource
+//13. setLastDetectTimeBySource
+//14. incrementCounterZoneChange
+//15. incrementCounterJS
+//16. incrementCounterTagBlink
+//17. incrementCounterCycleCount
+//18. incrementCounters
+//19. storeChange
+
+  /**
+   * printLog Print debug logs
+   *
+   * Usage example:
+   * printLog(logHeader, 'start');
+   * printLog(varName);
+   * printLog(logHeader, 'end');
+   *
+   * @param  {string} message Message to display
+   * @param  {string} type    Type of message: start, end or update
+   * @return none
+   */
+  function printLog(message, type){
+    if (gLogState === false) return;  // no need to log if log state is set to false
+
+    switch (type) {
+      case "start":
+        logger.info(loggerModifierSN + ': <<<--- JSRULE Start ' + message + ' --->>>');
+        break;
+      case "end":
+        logger.info(loggerModifierSN + ': <<<--- JSRULE End ' + message + ' --->>>');
+        break;
+      case "debug":
+        logger.info(loggerModifierSN + ':' + message);
+        break;
+      default:
+        // By default update mode
+        logger.info(loggerModifierSN + ':' + message);
+    }
+  }
+
+  /**
+   * [Formats a timestamp into a US format date, it returns just the date part of the timestamp and removes the time part]
+   * @param  {timestamp} date to be formatted
+   * @return
+   */
+  function formatDate(dateTimestamp){
+    var d = new Date(parseFloat(dateTimestamp));
+    var options = {
+      year: "numeric", month: "2-digit", day: "2-digit"
+    };
+    return d.toLocaleDateString("en-US", options);
+  }
+
+  /**
+   * PropertySetter given an array of UDFs, this function will update the Thing
+   *
+   * Usage example:
+   * PropertySetter(UDFS);
+   *
+   * @param {object} myUDFs [array of all UDFs]
+   * @return none
+   */
+  function PropertySetter(myUDFs){
+    for (var udf in myUDFs) {
+      var value = myUDFs[udf];
+      if ((udf !== null) && (value !== null) && (value !== undefined)) {
+        thingMessage.putField(messageTimestamp, udf, "" + value);
+        printLog(logHeader + ' PropertySetter: ' + udf + ' | Value: ' + myUDFs[udf], "UPDATE");
+      }
+    }
+  }
+
+  /**
+   * appendUDF - Append a new udf element to the UDFs object to change
+   * (*) UDFS object shoud be defined previously
+   *
+   * Usage example:
+   * appendUDF('MyValue', MyNewValue);
+   *
+   * @param  {string} udfName  UDFName
+   * @param  {string} udfValue
+   * @return {}          UDF array modified
+   */
+  function appendUDF(udfName, udfValue){
+    UDFS[udfName] = udfValue;
+    printLog(logHeader, "appendUDF= " + udfName + ':' + udfValue);
+  };
+
+  /**
+   * parseToBoolean - returns the respective boolean value from a Boolean or String type
+   * @param  {string/boolean} value  udf value
+   * @return {boolean}  Boolean
+   */
+  function parseToBoolean(value){
+    return (value === true || value === 'true');
+  }
+
+  /**
+   * getUDFValue - Gets the value of a UDF
+   * Posible Parameters
+   * <UDFName> | serialNumber | thingTypeCode | Source | zoneCode | zone | facilityMap | zoneID | zoneTypeCode | zoneType | zoneProperties
+   *
+   * Function latest update : 2017-09-15 11:00:00
+   *
+   * Usage example:https://www.w3schools.com/
+   * myZone = getUDFvalue('zone');
+   * getUDFvalue('serialNumber');
+   *
+   * @param  {string} udfName  <UDFName>. Ej thingTypeCode, zoneCode, zone, facilityMap
+   * @return {string}          UDF Value
+   */
+  function getUDFvalue(udfName){
+    var udfValue = '';
+    var zoneObj = null;
+
+    switch (udfName) {
+      case 'serialNumber':
+        udfValue = thing.getSerialNumber();
+        break;
+      case 'thingTypeCode':
+        udfValue = thing.getThingType().getCode();
+        break;
+      case 'Source':
+        thingMessage.getUdf("source").getValue();
+        break;
+      case 'zoneCode':
+        zoneObj = thingWrapper.getUdfZone("zone");
+        if (zoneObj !== null)
+          udfValue = zoneObj.getCode();
+        break;
+      case 'zone':
+        zoneObj = thingWrapper.getUdfZone("zone");
+        if (zoneObj !== null)
+          udfValue = zoneObj.getName();
+        break;
+      case 'currentFacilityMap':
+        if (thingMessage.getUdf("zone")) {
+          var zoneId = thingMessage.getUdf("zone").getValue().id;
+          zoneObj = tw.getCacheService().getZoneById(zoneId);
+          if (zoneObj !== null)
+            udfValue = zoneObj.facilityMap.name;
+        }
+        break;
+      case 'previousFacilityMap':
+        var prev = tw.getThing();
+        if (prev) {
+          var prevZoneId = prev.getUdf("zone");
+          if (prevZoneId !== null && prevZoneId !== 0) {
+            var zoneCacheObj = tw.getCacheService().getZoneById(prevZoneId);
+
+            if (zoneCacheObj !== null) {
+              udfValue = zoneCacheObj.facilityMap.name;
+            }
+          }
+        }
+        break;
+      case 'zoneID':
+        zoneObj = thingWrapper.getUdfZone("zone");
+        if (zoneObj !== null) {
+          udfValue = zoneObj.getId();
+        }
+        break;
+      case 'zoneTypeCode' :
+        zoneObj = thingWrapper.getUdfZone("zone");
+        if (zoneObj !== null) {
+          udfValue = zoneObj.getZoneType().getId();
+        }
+        break;
+      case 'zoneType' :
+        udfValue = null;
+        zoneObj = thingWrapper.getUdfZone("zone");
+        if (zoneObj) {
+          zoneTypeObj = zoneObj.getZoneType();
+          if (zoneTypeObj) {
+            udfValue = zoneTypeObj.getName();
+          }
+        }
+        break;
+      case 'zoneProperties':
+        zoneObj = thingWrapper.getUdfZone("zone");
+        var zoneProperties = {};
+        if (zoneObj !== null) {
+          var zone = cacheService.getZoneById(zoneObj.getId());
+          udfValue = zone.zoneProperties;
+        } else {
+          udfValue = null;
+        }
+        break;
+      case 'ItemDisposition':
+        var itemStatusObj = thingWrapper.getUdfAsObject("Retail_Disposition");
+        if (itemStatusObj) {
+          udfValue = itemStatusObj.serialNumber;
+        } else {
+          udfValue = null;
+        }
+        break;
+      default:
+        udfValue = thingWrapper.getUdf(udfName);
+
+    }
+
+    return udfValue;
+  }
+
+  /**
+   * GetZonePropertyValue - Gets an specific zone property
+   * @param  {string} propertyName
+   * @return {string} propertyValue
+   */
+  function getZonePropertyValue(propertyName){
+    var udfValue = '';
+    var zoneObj = thingWrapper.getUdfZone("zone");
+    if (zoneObj !== null) {
+      var zone = cacheService.getZoneById(zoneObj.getId());
+      var zoneProperties = zone.zoneProperties;
+      udfValue = zoneProperties.get(propertyName);
+    } else {
+      udfValue = '';
+    }
+    return udfValue;
+  }
+
+  /**
+   * Given a thing type code and serial #, this function will retrieve the thing object if it exists
+   * this function takes in 2 parameters
+   * theThingType - which holds teh thing tyoe code
+   * theSerial - which holds the serial of a given thing of the thing type
+   * function will return the thing object
+   * @param  {string} thingTypeCode
+   * @param  {string} serial
+   * @return {object} theThing
+   */
+  function GetThingByThingTypeCode(thingTypeCode, serial){
+
+    printLog(" GetThingByThingTypeCode " + thingTypeCode + " | " + serial, "debug");
+    var theThing = cacheManagerUtil.getThing(thingTypeCode, serial);
+
+    return theThing;
+  }
+
+  /**
+   * Function to copy the Meta Data from Products to a ThingType
+   * the ThingType must be declared on Vizix with the same standard UDFs
+   * i.e. Item.
+   *
+   * Item EPC_GS1KEY will always contain a 13 digits
+   * Product serial number varies betsween 10 and 13 digits
+   * to find a product to fit an Item we need to search for products using the EPC_GS1KEY removing the first digit to match the product serial.
+   * I.E.  Item EPC_GS1KEY = 0001234567890 if no product is found it will search then with 001234567890 and then with 01234567890 and finally with 1234567890.
+   * 2018-03-02 Mapping UDFs are being filled dinamically based on a ThingType
+   * @return {boolean} If Thing Type had MetaData
+   */
+  function copyRetailMetaData(parameter, prodThingType){
+
+    if (thingMessage.getUdf(parameter)) {
+      var exp = thingMessage.getUdf(parameter).getValue();
+      upcThing = GetThingByThingTypeCode(prodThingType, exp);
+
+      if (upcThing) {
+
+        for (var i = 1; i <= mappingLimit; i++) {
+          mappingThing = GetThingByThingTypeCode('retailProduct2ItemMapping', i.toString());
+
+          if (mappingThing) {
+            var copyFlag = mappingThing.getUdf('Retail_CopyFlag');
+
+            if (parseToBoolean(copyFlag)) {
+              var itemUDF = mappingThing.getUdf('Retail_ItemUDF');
+              var productUDF = mappingThing.getUdf('Retail_ProductUDF');
+
+              if (productUDF === 'Retail_GTIN') {
+                appendUDF(itemUDF, exp);
+              } else {
+
+                if (upcThing.getUdf(productUDF)) {
+                  appendUDF(itemUDF, upcThing.getUdf(productUDF).toString());
+                }
+              }
+            }
+          }
+        }
+
+      } else {
+        printLog(" UPC for Thing Type Products " + exp + " NOT FOUND!!", "debug");
+        return false;
+      }
+    } else {
+      printLog(parameter + " NOT FOUND!!! ", "debug");
+      return false;
+    }
+    return true;
+  }
+
+  /**
+   * Function to copy the attributes from StoreAttributes to a ThingType Item
+   * the ThingType must be declared on Vizix with the same standard UDFs
+   * i.e. Item.
+   *
+   * Item Should have the udfs according the mapping that is in this function
+   * @return {boolean} If Thing Type had Store Attributes
+   */
+
+  function copyRetailStoreAttributes(serial){
+    var storeAttributesThing = GetThingByThingTypeCode('storeAttributes', serial);
+    printLog("StoreAttributes Thing: " + storeAttributesThing, "debug");
+    if (storeAttributesThing) {
+      appendUDF("Retail_SA_Min", storeAttributesThing.getUdf('SFTargetQtyMIN'));
+      appendUDF("Retail_SA_Max", storeAttributesThing.getUdf('SFTargetQtyMAX'));
+      appendUDF("Retail_SA_Clearance", storeAttributesThing.getUdf('ClearanceIndicator'));
+      appendUDF("Retail_SA_StoreNumber", storeAttributesThing.getUdf('StoreNumber'));
+      return true;
+    } else {
+      printLog(" StoreAttributes for serial: " + serial + " NOT FOUND!!", "debug");
+      return false;
+    }
+  }
+
+  /**
+   * Sets the First and Last Detect UDFs by source.
+   * Make sure that the Thing Type has the following UDFs:
+   * firstDetectTimePerDay_ALEBridge (Timestamp) - Set firstDetect if source=ALE Bridge
+   * firstDetectTimePerDay_SFBridge (Timestamp) - Set firstDetect if source=STRFLEX Bridge
+   * firstDetectTimePerDay_Mobile (Timestamp) - Set firstDetect if source=Mobile
+   * lastDetectTime_ALEBridge (Timestamp) - Set lastDetect if source=ALE Bridge
+   * lastDetectTime_SFBridge (Timestamp) - Set lastDetect if source=STRFLEX Bridge
+   * lastDetectTime_Mobile (Timestamp) - Set lastDetect if source=Mobile
+   * **/
+  function setFirstLastDetectSourceUDFs(source){
+
+    setFirstDetectTimeBySource(source);
+    setLastDetectTimeBySource(source);
+
+  }
+
+  /**
+   * Sets the First Detect UDFs by source.
+   * Make sure that the Thing Type has the following UDFs:
+   * firstDetectTimePerDay_ALEBridge (Timestamp) - Set firstDetect if source=ALE Bridge
+   * firstDetectTimePerDay_SFBridge (Timestamp) - Set firstDetect if source=STRFLEX Bridge
+   * firstDetectTimePerDay_Mobile (Timestamp) - Set firstDetect if source=MOBILE
+   * **/
+  function setFirstDetectTimeBySource(source){
+
+    var messageTs = messageTimestamp;
+    var bySource = "";
+
+    if (!tw.getUdf("ViZix_FirstDetectedDate")) {
+      appendUDF('ViZix_FirstDetected', true);
+      appendUDF('ViZix_FirstDetectedZone', getUDFvalue("zoneCode"));
+      appendUDF('ViZix_FirstDetectedDate', messageTs);
+    }
+
+    //Define the sources handled by this
+    if (source.startsWith("ALE")) {
+      bySource = "ALEB";
+    }
+    if (source.startsWith("SF")) {
+      bySource = "STARB";
+    }
+    if (source.startsWith("MOBILE")) {
+      bySource = "VMOB";
+    }
+
+    switch (bySource) {
+      case "ALEB":
+        if (!tw.getUdf("ViZix_FirstDetectTimePerDay_ALEBridge")) {
+          appendUDF('ViZix_FirstDetectTimePerDay_ALEBridge', messageTs);
+        } else {
+          //Reset FirstDetect if TODAY is diff to FirstDetect previously saved
+          var firstDetectCache = formatDate(tw.getUdf("ViZix_FirstDetectTimePerDay_ALEBridge"));
+          var now = formatDate(messageTs);
+          if (now !== firstDetectCache)
+            appendUDF('ViZix_FirstDetectTimePerDay_ALEBridge', messageTs);
+        }
+        break;
+      case "STARB":
+        if (!tw.getUdf("ViZix_FirstDetectTimePerDay_SFBridge")) {
+          appendUDF('ViZix_FirstDetectTimePerDay_SFBridge', messageTs);
+        } else {
+          //Reset FirstDetect if TODAY is diff to FirstDetect previously saved
+          var firstDetectCache = formatDate(tw.getUdf("ViZix_FirstDetectTimePerDay_SFBridge"));
+          var now = formatDate(messageTs);
+          if (now !== firstDetectCache)
+            appendUDF('ViZix_FirstDetectTimePerDay_SFBridge', messageTs);
+        }
+        break;
+      case "VMOB":
+        if (!tw.getUdf("ViZix_FirstDetectTimePerDay_Mobile")) {
+          appendUDF('ViZix_FirstDetectTimePerDay_Mobile', messageTs);
+        } else {
+          //Reset FirstDetect if TODAY is diff to FirstDetect previously saved
+          var firstDetectCache = formatDate(tw.getUdf("ViZix_FirstDetectTimePerDay_Mobile"));
+          var now = formatDate(messageTs);
+          if (now !== firstDetectCache)
+            appendUDF('ViZix_FirstDetectTimePerDay_Mobile', messageTs);
+        }
+        break;
+      default:
+    }
+
+    printLog(" setFirstDetectTimeBySource = " + source, "debug");
+
+  }
+
+  /**
+   * Sets the Last Detect UDFs by source.
+   * Make sure that the Thing Type has the following UDFs:
+   * lastDetectTime_ALEBridge (Timestamp) - Set lastDetect if source=ALE Bridge
+   * lastDetectTime_SFBridge (Timestamp) - Set lastDetect if source=STRFLEX Bridge
+   * lastDetectTime_Mobile (Timestamp) - Set lastDetect if source=MOBILE
+   * **/
+  function setLastDetectTimeBySource(source){
+
+    var messageTs = thingMessage.getTime();
+    var bySource = "";
+
+    //Define the sources handled by this JSRule
+    if (source.startsWith("ALE")) {
+      bySource = "ALEB";
+    }
+    if (source.startsWith("SF")) {
+      bySource = "STARB";
+    }
+    if (source.startsWith("MOBILE")) {
+      bySource = "VMOB";
+    }
+
+    switch (bySource) {
+      case "ALEB":
+        appendUDF('ViZix_LastDetectTime_ALEBridge', messageTs);
+        break;
+      case "STARB":
+        appendUDF('ViZix_LastDetectTime_SFBridge', messageTs);
+        break;
+      case "VMOB":
+        appendUDF('ViZix_LastDetectTime_Mobile', messageTs);
+        break;
+      default:
+    }
+
+    printLog(" setLastDetectTimeBySource = " + source, "debug");
+
+  }
+
+  /***
+   * Increments +1 the Zone Change counter of a thing
+   * Make sure that the Thing Type has the following UDF:
+   * CounterZoneChange  (Number) - Default to 0: To collect the number of time a thing change the zone
+   * */
+  function incrementCounterZoneChange(){
+    var ZONE_CHANGED = false;
+    var zone = '';
+    var zoneCache = '';
+
+    var zoneObj = tw.getUdfZone("zone"); // get the Zone From Message First, if null then will search on the DB. and return and OBJ
+    if (zoneObj !== null) {
+      zone = zoneObj.getCode(); // Will get the zone Code from Zone OBJ
+    }
+    var prev = tw.getThing();
+
+    if (prev) {
+      var zoneId = prev.getUdf("zone");  //Get the ZoneId from DB
+
+      if (zoneId !== null && zoneId !== 0) {
+        var zoneCacheObj = tw.getCacheService().getZoneById(zoneId);
+        if (zoneCacheObj !== null) {
+          zoneCache = zoneCacheObj.code;
+        }
+      } else {
+        zoneCache = '';
+      }
+    }
+
+    ZONE_CHANGED = (!!zone) && (zone !== zoneCache);
+
+    if (zone.toLowerCase() === 'unknown') {
+      ZONE_CHANGED = false;
+    }
+
+    if (ZONE_CHANGED) {
+      var counterZoneChange = thing.getUdf("ViZix_CounterZoneChange");
+
+      if (isNaN(counterZoneChange)) {
+        appendUDF('ViZix_CounterZoneChange', parseInt(1));
+      } else {
+        appendUDF('ViZix_CounterZoneChange', parseInt(counterZoneChange) + 1);
+      }
+    }
+
+  }
+
+  /**
+   * Increments +1 the JScounter of a thing
+   * Make sure that the Thing Type has the following UDF:
+   * CounterJS (Number) - Default to 0 : To collect the number of times a JS rule is evaluated for a thing
+   * */
+  function incrementCounterJS(){
+    var counterJS = thing.getUdf("ViZix_CounterJS");
+
+    if (isNaN(counterJS)) {
+      appendUDF('ViZix_CounterJS', parseInt(1));
+    } else {
+      appendUDF('ViZix_CounterJS', parseInt(counterJS) + 1);
+    }
+  }
+
+  /***
+   * Increments +1 the Tag Blink counters of a thing
+   * Make sure that the Thing Type has the following UDF:
+   * CounterTagBlink (Number) - Default to 0: To collect the number of blinks received, the source may be ALE Bridge or STARflex Bridge
+   * */
+  function incrementCounterTagBlink(){
+
+    if (source === "ALEB") {
+      var counterTagBlink = thing.getUdf("ViZix_CounterTagBlink");
+
+      if (isNaN(counterTagBlink)) {
+        appendUDF('ViZix_CounterTagBlink', parseInt(1));
+      } else {
+        appendUDF('ViZix_CounterTagBlink', parseInt(counterTagBlink) + 1);
+      }
+
+    }
+  }
+
+  /***
+   * Increments +1 the Cycle Count counters of a thing
+   * Make sure that the Thing Type has the following UDF:
+   * CounterCycleCount (Number) - Default to 0: To collect the number of Cycle Count Reads, the source has to be MOBILE and CycleCountDate
+   * */
+  function incrementCounterCycleCount(){
+
+    var cycleCountDate = thingMessage.getUdf("Retail_CycleCountDate");
+
+    if ((source === "MOBILE") && (cycleCountDate !== null)) {
+      var counterCycleCount = thing.getUdf("ViZix_CounterCycleCount");
+
+      if (isNaN(counterCycleCount) || (counterCycleCount === null)) {
+        appendUDF('ViZix_CounterCycleCount', parseInt(1));
+      } else {
+        appendUDF('ViZix_CounterCycleCount', parseInt(counterCycleCount) + 1);
+      }
+
+    }
+
+  }
+
+  /***
+   * Increments +1 the counters of a thing
+   * Make sure that the Thing Type has the following UDFs:
+   * CounterJS (Number) - Default to 0 : To collect the number of times a JS rule is evaluated for a thing
+   * CounterTagBlink (Number) - Default to 0: To collect the number of blinks received, the source may be ALE Bridge or STARflex Bridge
+   * CounterZoneChange  (Number) - Default to 0: To collect the number of time a thing change the zone
+   * */
+  function incrementCounters(){
+    /** JS Counter**/
+    incrementCounterJS();
+
+    /** Zone Change Counter **/
+    incrementCounterZoneChange();
+
+    /** Tag Blink Counter **/
+    incrementCounterTagBlink();
+
+    /** Cycle Count Counter **/
+    incrementCounterCycleCount();
+  }
+
+  /**
+   * Validate if the tag have changed the Store (FacilityName)
+   * Make sure that the Thing Type has the following UDF:
+   * FacilityID (String) - Name of Facility (ViZix)
+   * PrevFacilityID (String) - Name of Prev Facility (created in )
+   * */
+  function storeChange(){
+    var currentFacility = getUDFvalue("currentFacilityMap");
+    var previousFacility = getUDFvalue("previousFacilityMap");
+
+    if (previousFacility && currentFacility) {
+      return (currentFacility.trim() !== previousFacility.trim());
+    } else {
+      return false;
+    }
+  }
+
+//
+// END OF FUNCTION LIBRARY
+// ********************************************************************************************************
+// ********************************************************************************************************
+
+})();

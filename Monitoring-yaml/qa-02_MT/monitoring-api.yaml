@@ -1,0 +1,64 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  namespace: qa-02-vizix-cloud
+  labels:
+    mojix.service: monitoring-api
+  name: monitoring-api
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      mojix.service: monitoring-api
+  template:
+    metadata:
+      creationTimestamp: null
+      labels:
+        mojix.service: monitoring-api
+    spec:
+      containers:
+      - name: monitoring-api
+        imagePullPolicy: "Always"
+        image: mojix/monitoring-api:v6.51.2
+        env:
+        - name: configuration.api.host
+          value: "configuration-api-devices"
+        - name: configuration.api.war.name
+          value: "/configuration-api-devices"
+        - name: metrics.elasticsearch.host
+          value: "shopcx-elasticsearch-monitoring"
+        - name: location.api.host
+          value: "externaltransformer"
+        - name: location.api.war.name
+          value: "statemachine-api-configuration"
+        - name: monitoring.multitenant.enabled
+          value: "false"
+        - name: JAVA_OPTS
+          value: "-XX:+UnlockExperimentalVMOptions -XX:+UseCGroupMemoryLimitForHeap -XX:MaxRAMFraction=1  -XshowSettings:vm"
+        resources:
+          limits:
+            memory: 512Mi
+          requests:
+            memory: 512Mi
+      hostname: monitoring-api
+      restartPolicy: Always
+      imagePullSecrets:
+        - name: mojix-registry
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  namespace: qa-02-vizix-cloud
+  labels:
+    mojix.service: monitoring-api
+  name: monitoring-api
+spec:
+  ports:
+  - name: "8080"
+    port: 8080
+    targetPort: 8080
+  selector:
+    mojix.service: monitoring-api
+status:
+  loadBalancer: {}

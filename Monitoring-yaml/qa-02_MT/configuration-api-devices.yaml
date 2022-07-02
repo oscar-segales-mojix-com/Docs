@@ -1,0 +1,62 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  namespace: qa-02-vizix-cloud
+  name: configuration-api-devices
+  labels:
+    mojix.service: configuration-api-devices
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      mojix.service: configuration-api-devices
+  template:
+    metadata:
+      creationTimestamp: null
+      labels:
+        mojix.service: configuration-api-devices
+    spec:
+      containers:
+      - name: configuration-api-devices
+        imagePullPolicy: "Always"
+        resources:
+          limits:
+            memory: 1024Mi
+          requests:
+            memory: 1024Mi
+        image: mojix/configuration-api-devices:v6.53.1
+        env:
+          - name: locations.api.host
+            value: "externaltransformer"
+          - name: locations.api.port
+            value: "8080"
+          - name: locations.api.war.name
+            value: "statemachine-api-configuration"
+          - name: kafka.servers
+            value: "kafka:9092"
+          - name: statemachine.api.configuration.firmware.folder
+            value: "/usr/local/firmware"
+          - name: JAVA_OPTS
+            value: "-DMYSQL_DATABASE=configurationDevices -DMYSQL_USER=root -DMYSQL_PASSWORD=wildfowl_crib_sidearm -DMYSQL_URL=shopcx-mysql -XX:+UnlockExperimentalVMOptions -XX:+UseCGroupMemoryLimitForHeap -XX:MaxRAMFraction=1  -XshowSettings:vm"
+      imagePullSecrets:
+        - name: mojix-registry
+      hostname: configuration-api-devices
+      restartPolicy: Always
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  namespace: qa-02-vizix-cloud
+  labels:
+    mojix.service: configuration-api-devices
+  name: configuration-api-devices
+spec:
+  ports:
+  - name: "8080"
+    port: 8080
+    targetPort: 8080
+  selector:
+    mojix.service: configuration-api-devices
+status:
+  loadBalancer: {}
