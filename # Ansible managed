@@ -55,6 +55,11 @@ for image in "${images[@]}"; do
   docker rmi "${image}" --force
 done;
 
+docker stop $(docker ps -aq)
+docker rm $(docker ps -aq)
+rm -rf /data/*
+rm /opt/ytem_edge/*
+
 wget https://chanel:chanel@partners.vizix.io/file/install-dev.sh
 
 bash install-dev.sh -e PERF-T1 -h DC1TEST-HUB01
@@ -115,12 +120,12 @@ onesignal_auth:  MmU5ZDJmZDItOTM4Ny00NGQ0LWExNTQtNDE4ODEzMTAzNDk2
 
 37e19c9d2223
 19768ee02f61
-docker exec -ti b6dcf6384220 bash -c './bin/kafka-console-consumer.sh --bootstrap-server kedge:9092 --topic ___v1___ss___inventory --from-beginning --property print.key=true --property print.timestamp=true'
-docker exec -ti b6dcf6384220 bash -c './bin/kafka-console-consumer.sh --bootstrap-server kedge:9092 --topic ___v1___ss___epcisMap --from-beginning --property print.key=true --property print.timestamp=true'
-docker exec -ti b6dcf6384220 bash -c './bin/kafka-console-consumer.sh --bootstrap-server kedge:9092 --topic ___v1___ss___settings --from-beginning --property print.key=true --property print.timestamp=true'
-docker exec -ti b6dcf6384220 bash -c './bin/kafka-console-consumer.sh --bootstrap-server kedge:9092 --topic ___v1___data0___RED___QAMOJIX___RAWEPCISEVENT --from-beginning --property print.key=true --property print.timestamp=true'
-docker exec -ti b6dcf6384220 bash -c './bin/kafka-console-consumer.sh --bootstrap-server kedge:9092 --topic ___v1___data0___rawevents___fittingroom --from-beginning --property print.key=true --property print.timestamp=true'
-docker exec -ti b6dcf6384220 bash -c './bin/kafka-console-consumer.sh --bootstrap-server kedge:9092 --topic ___v1___data0___RED___QAMOJIXHUBG___RAWEPCISEVENT --from-beginning --property print.key=true --property print.timestamp=true'
+docker exec -ti c68112e5f9ac bash -c './bin/kafka-console-consumer.sh --bootstrap-server kedge:9092 --topic ___v1___ss___inventory --from-beginning --property print.key=true --property print.timestamp=true'
+docker exec -ti c68112e5f9ac bash -c './bin/kafka-console-consumer.sh --bootstrap-server kedge:9092 --topic ___v1___ss___epcisMap --from-beginning --property print.key=true --property print.timestamp=true'
+docker exec -ti c68112e5f9ac bash -c './bin/kafka-console-consumer.sh --bootstrap-server kedge:9092 --topic ___v1___ss___settings --from-beginning --property print.key=true --property print.timestamp=true'
+docker exec -ti c68112e5f9ac bash -c './bin/kafka-console-consumer.sh --bootstrap-server kedge:9092 --topic ___v1___data0___RED___QAMOJIX___RAWEPCISEVENT --from-beginning --property print.key=true --property print.timestamp=true'
+docker exec -ti c68112e5f9ac bash -c './bin/kafka-console-consumer.sh --bootstrap-server kedge:9092 --topic ___v1___data0___rawevents___fittingroom --from-beginning --property print.key=true --property print.timestamp=true'
+docker exec -ti c68112e5f9ac bash -c './bin/kafka-console-consumer.sh --bootstrap-server kedge:9092 --topic ___v1___data0___RED___QAMOJIXHUBG___RAWEPCISEVENT --from-beginning --property print.key=true --property print.timestamp=true'
 
 wget https://chanel:chanel@partners.vizix.io/file/install.sh
 bash install.sh -e RED-AT -h QAMOJIX-HUB01

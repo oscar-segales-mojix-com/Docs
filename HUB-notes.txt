@@ -1,0 +1,5 @@
+HUB:::
+Life Cycle no aplica a EDGE (fuera de scope)
+    - Si hay un blocked (retail_sold,etc) por mas que este liberado para EDGE siempre estara blocked
+Errores en EDGE- Monitoring :::
+modificar el yaml (verificar el Premise code sea el correcto)
